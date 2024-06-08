@@ -1,22 +1,37 @@
 <div class="container">
+
     <div class="movies">
-        <app-movie-card *ngFor="let movie of movies" [movie]="movie" 
-            (addFavourite)="addMovieToFavourite($event)" 
-            (addWatchList)="addMovieToWatchLater($event)">
-        </app-movie-card>
+        <h1 class="title">Movies</h1>
+        <div class="movie-list">
+            <app-movie-card *ngFor="let movie of movies" [movie]="movie" 
+                (addFavourite)="addMovieToFavourite($event)" 
+                (addWatchList)="addMovieToWatchLater($event)">
+            </app-movie-card>
+        </div>
     </div>
 
-    <div class="favourite">
-        <h2>Favourite</h2>
-        <div *ngFor="let movie of favouriteMovies">
-            <p>{{ movie.title }}</p>
+    <div class="side-bar">
+        <div class="favourite">
+            <h2 class="favourite__title">Favourite</h2>
+            <div class="movie-item is-flex-space-between" *ngFor="let movie of favouriteMovies">
+                <p>{{ movie.title }}</p>
+                <div class="movie-item__img">
+                    <img [src]="'assets/images/' + movie.imgPath" alt="">
+                </div>
+            </div>
+            
         </div>
-        
+        <div class="watch-later">
+            <h2 class="watch-later__title">Watch Later</h2>
+            <div class="movie-item is-flex-space-between" *ngFor="let movie of watchLaterMovies">
+                <p>{{ movie.title }}</p>
+                <div class="movie-item__img">
+                    <img [src]="'assets/images/' + movie.imgPath" alt="">
+                </div>
+            </div>
+        </div> 
     </div>
-    <div class="watch-later">
-        <h2>Watch Later</h2>
-        <div *ngFor="let movie of watchLaterMovies">
-            <p>{{ movie.title }}</p>
-        </div>
-    </div>
+
+
+
 </div>

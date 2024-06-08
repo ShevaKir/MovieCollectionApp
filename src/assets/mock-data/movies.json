@@ -25,14 +25,5 @@
         "director": "Christopher Nolan",
         "age": "10+",
         "duration": 169
-    },
-    {
-        "title": "The Godfather",
-        "desc": "The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son.",
-        "imgPath": "posters/god-father.jpg",
-        "rating": 9.2,
-        "director": "Francis Ford Coppola",
-        "age": "18+",
-        "duration": 175
     }
 ]

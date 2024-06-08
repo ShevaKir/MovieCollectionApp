@@ -1,9 +1,49 @@
+.container {
+    display: flex;
+}
+.title {
+    text-align: center;
+    font-size: 48px;
+}
 .movies {
+}
+.movie-list {
     margin-top: 30px;
+    margin-bottom: 30px;
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
     gap: 10px;
+}
+
+.side-bar {
+    flex: 0 0 200px;
+    margin-top: 55px;
+    padding: 30px;
+      
+}
+
+.favourite, .watch-later {
+    margin-bottom: 50px;
+
+    &__title {
+        margin-bottom: 10px;
+    }
+}
+
+.movie-item {
+    padding: 10px 5px;
+    background: #877ecc;
+    color: white;
+    border-radius: 6px;
+    margin-bottom: 10px;
+
+    &__img {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        overflow: hidden;
+    }
 }
 
 app-movie-card {
