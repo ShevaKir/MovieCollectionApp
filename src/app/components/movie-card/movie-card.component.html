@@ -1,0 +1,17 @@
+<div class="card">
+    <div class="card__img">
+        <img [src]="movie?.imgPath" alt="">
+    </div>
+    <h3 class="card__title">{{ movie?.title }}</h3>
+    <p class="card__rating">{{ movie?.rating }}</p>
+    <p class="card__desc">{{ movie?.desc }}</p>
+    <div class="card__additinal">
+        Additional Information
+        <span class="card__additinal__director">{{ movie?.director }}</span>
+        <span class="card__additinal__duration">{{ movie?.duration }}</span>
+        <span class="card__additinal__age">{{ movie?.age }}</span>
+    </div>
+    
+    <button class="button" title="Add to favourite" (click)="addToFavourite()"></button>
+    <button class="button" title="Add to watch List" (click)="addToWatchList()"></button>
+</div>
