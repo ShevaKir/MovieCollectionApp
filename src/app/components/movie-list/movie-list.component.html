@@ -1,5 +1,22 @@
 <div class="container">
     <div class="movies">
-        <app-movie-card *ngFor="let movie of movies" [movie]="movie"></app-movie-card>
+        <app-movie-card *ngFor="let movie of movies" [movie]="movie" 
+            (addFavourite)="addMovieToFavourite($event)" 
+            (addWatchList)="addMovieToWatchLater($event)">
+        </app-movie-card>
+    </div>
+
+    <div class="favourite">
+        <h2>Favourite</h2>
+        <div *ngFor="let movie of favouriteMovies">
+            <p>{{ movie.title }}</p>
+        </div>
+        
+    </div>
+    <div class="watch-later">
+        <h2>Watch Later</h2>
+        <div *ngFor="let movie of watchLaterMovies">
+            <p>{{ movie.title }}</p>
+        </div>
     </div>
 </div>

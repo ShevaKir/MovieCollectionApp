@@ -14,4 +14,24 @@ import moviesMockData from '../../../assets/mock-data/movies.json';
 })
 export class MovieListComponent {
   movies: IMovieCard[] = moviesMockData;
+  favouriteMovies: Set<IMovieCard> = new Set<IMovieCard>();
+  watchLaterMovies: Set<IMovieCard> = new Set<IMovieCard>();
+
+  addMovieToFavourite(movie: IMovieCard) {
+    if(this.favouriteMovies.has(movie)) {
+      this.favouriteMovies.delete(movie);
+    }
+    else {
+      this.favouriteMovies.add(movie);
+    }
+  }
+
+  addMovieToWatchLater(movie: IMovieCard) {
+    if(this.watchLaterMovies.has(movie)) {
+      this.watchLaterMovies.delete(movie);
+    }
+    else {
+      this.watchLaterMovies.add(movie);
+    }
+  }
 }
