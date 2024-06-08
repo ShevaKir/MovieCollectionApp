@@ -1,6 +1,11 @@
 .movies {
-    margin-top: 100px;
+    margin-top: 30px;
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
+    gap: 10px;
+}
+
+app-movie-card {
+    flex: 0 1 300px;
 }

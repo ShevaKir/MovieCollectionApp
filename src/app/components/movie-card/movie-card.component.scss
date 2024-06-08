@@ -1,20 +1,29 @@
 .card {
     background-color: bisque;
     border-radius: 12px;
-    width: 400px;
-    padding: 12px;
+    padding: 30px;
     &__img {
+        margin-bottom: 12px;
     }
 
     &__title {
-    }
-
-    &__rating {
+        margin-bottom: 12px;
+        font-size: 24px;
+        &__rating {
+        }
     }
 
     &__desc {
+        height: auto;
+        margin-bottom: 12px;
     }
 
     &__additinal {
+        margin-bottom: 12px;
     }
+}
+
+.button {
+    width: 30px;
+    height: 30px;
 }

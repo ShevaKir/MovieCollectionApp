@@ -1,17 +1,26 @@
 <div class="card">
     <div class="card__img">
-        <img [src]="movie?.imgPath" alt="">
+        <img [src]="'assets/images/' + movie?.imgPath" alt="">
     </div>
-    <h3 class="card__title">{{ movie?.title }}</h3>
-    <p class="card__rating">{{ movie?.rating }}</p>
+    <div class="card__title is-flex-space-between">
+        <h3 class="card__title__name">{{ movie?.title }}</h3>
+        <p class="card__title__rating">{{ movie?.rating }}</p>
+    </div>
+
     <p class="card__desc">{{ movie?.desc }}</p>
     <div class="card__additinal">
-        Additional Information
-        <span class="card__additinal__director">{{ movie?.director }}</span>
-        <span class="card__additinal__duration">{{ movie?.duration }}</span>
-        <span class="card__additinal__age">{{ movie?.age }}</span>
+        <p class="card__additinal__director"> Director: {{ movie?.director }}</p>
+        <p class="card__additinal__duration">Duration: {{ movie?.duration }} min</p>
+        <p class="card__additinal__age"> Min age: {{ movie?.age }}</p>
     </div>
     
-    <button class="button" title="Add to favourite" (click)="addToFavourite()"></button>
-    <button class="button" title="Add to watch List" (click)="addToWatchList()"></button>
+    <div class="is-flex-space-between">
+        <button class="button" title="Add to favourite" (click)="addToFavourite()">
+            <img src="assets/images/icons/favourite-star.svg" alt="Favourite">
+        </button>
+        <button class="button" title="Add to watch List" (click)="addToWatchList()">
+            <img src="assets/images/icons/watch-later.svg" alt="Watch later">
+        </button>
+    </div>
+
 </div>
