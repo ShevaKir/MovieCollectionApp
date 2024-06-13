@@ -1,15 +1,16 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { IMovieCard } from '../../models/IMovieCard';
+import { DurationPipe } from '../../pipes/duration/duration.pipe';
 
 @Component({
   selector: 'app-movie-card',
   standalone: true,
-  imports: [],
+  imports: [ DurationPipe ],
   templateUrl: './movie-card.component.html',
   styleUrl: './movie-card.component.scss'
 })
 export class MovieCardComponent {
-  @Input() movie?: IMovieCard;
+  @Input() movie!: IMovieCard;
 
   @Output() addFavourite = new EventEmitter<any>();
   @Output() addWatchList = new EventEmitter<any>();
