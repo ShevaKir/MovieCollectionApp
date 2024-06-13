@@ -1,3 +1,6 @@
+import { IMovieCard } from "../models/IMovieCard";
+
+export const MOVIES : IMovieCard[] = 
 [
     {
         "title": "Inception",
