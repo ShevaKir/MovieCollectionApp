@@ -1,17 +1,17 @@
 <div class="card">
     <div class="card__img">
-        <img [src]="'assets/images/' + movie?.imgPath" alt="">
+        <img [src]="'assets/images/' + movie.imgPath" alt="">
     </div>
     <div class="card__title is-flex-space-between">
-        <h3 class="card__title__name">{{ movie?.title }}</h3>
-        <p class="card__title__rating">{{ movie?.rating }}</p>
+        <h3 class="card__title__name">{{ movie.title }}</h3>
+        <p class="card__title__rating">{{ movie.rating }}</p>
     </div>
 
-    <p class="card__desc">{{ movie?.desc }}</p>
+    <p class="card__desc">{{ movie.desc }}</p>
     <div class="card__additinal">
-        <p class="card__additinal__director"> Director: {{ movie?.director }}</p>
-        <p class="card__additinal__duration">Duration: {{ movie?.duration }} min</p>
-        <p class="card__additinal__age"> Min age: {{ movie?.age }}</p>
+        <p class="card__additinal__director">Director: {{ movie.director }}</p>
+        <p class="card__additinal__duration">Duration: {{ movie.duration | duration }}</p>
+        <p class="card__additinal__age"> Min age: {{ movie.age }}</p>
     </div>
     
     <div class="buttons is-flex-space-between">
