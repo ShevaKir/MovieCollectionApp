@@ -3,7 +3,7 @@
     <div class="movies">
         <h1 class="title">Movies</h1>
         <div class="movie-list">
-            @for (movie of movies; track movie.title) {
+            @for (movie of movies; track movie) {
                 <app-movie-card [movie]="movie" 
                     (addFavourite)="addMovieToFavourite($event)" 
                     (addWatchList)="addMovieToWatchLater($event)">
@@ -15,7 +15,7 @@
     <div class="side-bar">
         <div class="favourite">
             <h2 class="favourite__title">Favourite</h2>
-            @for (movie of favouriteMovies; track movie.title) {
+            @for (movie of favouriteMovies; track movie) {
                 <div class="movie-item is-flex-space-between">
                     <p>{{ movie.title }}</p>
                     <div class="movie-item__img">
@@ -29,7 +29,7 @@
         </div>
         <div class="watch-later">
             <h2 class="watch-later__title">Watch Later</h2>
-            @for (movie of watchLaterMovies; track movie.title) {
+            @for (movie of watchLaterMovies; track movie) {
                 <div class="movie-item is-flex-space-between">
                     <p>{{ movie.title }}</p>
                     <div class="movie-item__img">
