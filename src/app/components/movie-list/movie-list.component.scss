@@ -1,3 +1,12 @@
+.side-bar {
+    position: fixed;
+    right: 0;
+    top: 0;
+    margin-top: 100px;
+    margin-right: 50px;
+    min-width: 300px;
+}
+
 .mat-mdc-card-content {
     display: flex;
     align-items: center;
@@ -7,4 +16,16 @@
   background-size: cover;
   margin-right: 16px;
   margin-bottom: 0;
+}
+
+.list {
+    margin-bottom: 16px;
+    &__content {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+    &__item {
+        width: 100%;
+    }
 }

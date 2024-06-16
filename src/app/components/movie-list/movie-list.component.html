@@ -12,13 +12,17 @@
       }
     </div>
   </div>
+</div>
 
-  <div class="side-bar">
-    <div class="favourite">
-      <h2 class="favourite__title">Favourite</h2>
+<div class="side-bar">
+  <mat-card class="list" appearance="outlined">
+    <mat-card-header>
+      <mat-card-title>Favourite</mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="list__content">
       @for (movie of favouriteMovies; track movie) {
 
-      <mat-card appearance="outlined">
+      <mat-card class="list__item" appearance="outlined">
         <mat-card-content
           ><div
             mat-card-avatar
@@ -33,11 +37,16 @@
       } @empty {
       <span>The list of favourite is empty</span>
       }
-    </div>
-    <div class="watch-later">
-      <h2 class="watch-later__title">Watch Later</h2>
+    </mat-card-content>
+  </mat-card>
+  <mat-card class="list" appearance="outlined">
+    <mat-card-header>
+      <mat-card-title>Watch Later</mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="list__content">
       @for (movie of watchLaterMovies; track movie) {
-      <mat-card appearance="outlined">
+
+      <mat-card class="list__item" appearance="outlined">
         <mat-card-content
           ><div
             mat-card-avatar
@@ -52,6 +61,6 @@
       } @empty {
       <span>The list of watch later is empty</span>
       }
-    </div>
-  </div>
+    </mat-card-content>
+  </mat-card>
 </div>
