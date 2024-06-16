@@ -1,51 +1,10 @@
-.container {
+.mat-mdc-card-content {
     display: flex;
-}
-.title {
-    text-align: center;
-    font-size: 48px;
-}
-.movies {
-}
-.movie-list {
-    margin-top: 30px;
-    margin-bottom: 30px;
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 10px;
+    align-items: center;
 }
 
-.side-bar {
-    flex: 0 0 200px;
-    margin-top: 55px;
-    padding: 30px;
-      
-}
-
-.favourite, .watch-later {
-    margin-bottom: 50px;
-
-    &__title {
-        margin-bottom: 10px;
-    }
-}
-
-.movie-item {
-    padding: 10px 5px;
-    background: #877ecc;
-    color: white;
-    border-radius: 6px;
-    margin-bottom: 10px;
-
-    &__img {
-        width: 30px;
-        height: 30px;
-        border-radius: 50%;
-        overflow: hidden;
-    }
-}
-
-app-movie-card {
-    flex: 0 1 300px;
+.header-image {
+  background-size: cover;
+  margin-right: 16px;
+  margin-bottom: 0;
 }

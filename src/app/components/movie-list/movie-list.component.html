@@ -1,45 +1,57 @@
 <div class="container">
-
-    <div class="movies">
-        <h1 class="title">Movies</h1>
-        <div class="movie-list">
-            @for (movie of movies; track movie) {
-                <app-movie-card [movie]="movie" 
-                    (addFavourite)="addMovieToFavourite($event)" 
-                    (addWatchList)="addMovieToWatchLater($event)">
-                </app-movie-card>
-            }
-        </div>
+  <div class="movies">
+    <h1 class="title">Movies</h1>
+    <div class="movie-list">
+      @for (movie of movies; track movie) {
+      <app-movie-card
+        [movie]="movie"
+        (addFavourite)="addMovieToFavourite($event)"
+        (addWatchList)="addMovieToWatchLater($event)"
+      >
+      </app-movie-card>
+      }
     </div>
+  </div>
 
-    <div class="side-bar">
-        <div class="favourite">
-            <h2 class="favourite__title">Favourite</h2>
-            @for (movie of favouriteMovies; track movie) {
-                <div class="movie-item is-flex-space-between">
-                    <p>{{ movie.title }}</p>
-                    <div class="movie-item__img">
-                        <img [src]="'assets/images/' + movie.imgPath" alt="">
-                    </div>
-                </div>
-            }
-            @empty { 
-                <span>The list of favourite is empty</span> 
-            }         
-        </div>
-        <div class="watch-later">
-            <h2 class="watch-later__title">Watch Later</h2>
-            @for (movie of watchLaterMovies; track movie) {
-                <div class="movie-item is-flex-space-between">
-                    <p>{{ movie.title }}</p>
-                    <div class="movie-item__img">
-                        <img [src]="'assets/images/' + movie.imgPath" alt="">
-                    </div>
-                </div>
-            }
-            @empty { 
-                <span>The list of watch later is empty</span> 
-            } 
-        </div> 
+  <div class="side-bar">
+    <div class="favourite">
+      <h2 class="favourite__title">Favourite</h2>
+      @for (movie of favouriteMovies; track movie) {
+
+      <mat-card appearance="outlined">
+        <mat-card-content
+          ><div
+            mat-card-avatar
+            class="header-image"
+            [ngStyle]="{
+              'background-image': 'url(assets/images/' + movie.imgPath + ')'
+            }"
+          ></div>
+          <p>{{ movie.title }}</p>
+        </mat-card-content>
+      </mat-card>
+      } @empty {
+      <span>The list of favourite is empty</span>
+      }
     </div>
+    <div class="watch-later">
+      <h2 class="watch-later__title">Watch Later</h2>
+      @for (movie of watchLaterMovies; track movie) {
+      <mat-card appearance="outlined">
+        <mat-card-content
+          ><div
+            mat-card-avatar
+            class="header-image"
+            [ngStyle]="{
+              'background-image': 'url(assets/images/' + movie.imgPath + ')'
+            }"
+          ></div>
+          <p>{{ movie.title }}</p>
+        </mat-card-content>
+      </mat-card>
+      } @empty {
+      <span>The list of watch later is empty</span>
+      }
+    </div>
+  </div>
 </div>
