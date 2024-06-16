@@ -1,5 +1,6 @@
 .card {
   max-width: 320px;
+  height: 100%;
   &__header {
     display: flex;
     justify-content: space-between;
@@ -9,9 +10,13 @@
   &__desc {
     margin-top: 16px;
   }
+  &__actions {
+    flex: 1;
+    align-items: flex-end;
+  }
 }
 
 .mdc-card__actions {
-    gap: 6px;
-    flex-wrap: wrap;
+  gap: 6px;
+  flex-wrap: wrap;
 }

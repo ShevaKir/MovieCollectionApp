@@ -1,6 +1,6 @@
 <div class="container">
+  <h1 class="title">Movies</h1>
   <div class="movies">
-    <h1 class="title">Movies</h1>
     <div class="movie-list">
       @for (movie of movies; track movie) {
       <app-movie-card
@@ -11,56 +11,55 @@
       </app-movie-card>
       }
     </div>
+    <div class="side-bar">
+      <mat-card class="list" appearance="outlined">
+        <mat-card-header>
+          <mat-card-title>Favourite</mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="list__content">
+          @for (movie of favouriteMovies; track movie) {
+
+          <mat-card class="list__item" appearance="outlined">
+            <mat-card-content
+              ><div
+                mat-card-avatar
+                class="header-image"
+                [ngStyle]="{
+                  'background-image': 'url(assets/images/' + movie.imgPath + ')'
+                }"
+              ></div>
+              <p>{{ movie.title }}</p>
+            </mat-card-content>
+          </mat-card>
+          } @empty {
+          <span>The list of favourite is empty</span>
+          }
+        </mat-card-content>
+      </mat-card>
+      <mat-card class="list" appearance="outlined">
+        <mat-card-header>
+          <mat-card-title>Watch Later</mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="list__content">
+          @for (movie of watchLaterMovies; track movie) {
+
+          <mat-card class="list__item" appearance="outlined">
+            <mat-card-content
+              ><div
+                mat-card-avatar
+                class="header-image"
+                [ngStyle]="{
+                  'background-image': 'url(assets/images/' + movie.imgPath + ')'
+                }"
+              ></div>
+              <p>{{ movie.title }}</p>
+            </mat-card-content>
+          </mat-card>
+          } @empty {
+          <span>The list of watch later is empty</span>
+          }
+        </mat-card-content>
+      </mat-card>
+    </div>
   </div>
-</div>
-
-<div class="side-bar">
-  <mat-card class="list" appearance="outlined">
-    <mat-card-header>
-      <mat-card-title>Favourite</mat-card-title>
-    </mat-card-header>
-    <mat-card-content class="list__content">
-      @for (movie of favouriteMovies; track movie) {
-
-      <mat-card class="list__item" appearance="outlined">
-        <mat-card-content
-          ><div
-            mat-card-avatar
-            class="header-image"
-            [ngStyle]="{
-              'background-image': 'url(assets/images/' + movie.imgPath + ')'
-            }"
-          ></div>
-          <p>{{ movie.title }}</p>
-        </mat-card-content>
-      </mat-card>
-      } @empty {
-      <span>The list of favourite is empty</span>
-      }
-    </mat-card-content>
-  </mat-card>
-  <mat-card class="list" appearance="outlined">
-    <mat-card-header>
-      <mat-card-title>Watch Later</mat-card-title>
-    </mat-card-header>
-    <mat-card-content class="list__content">
-      @for (movie of watchLaterMovies; track movie) {
-
-      <mat-card class="list__item" appearance="outlined">
-        <mat-card-content
-          ><div
-            mat-card-avatar
-            class="header-image"
-            [ngStyle]="{
-              'background-image': 'url(assets/images/' + movie.imgPath + ')'
-            }"
-          ></div>
-          <p>{{ movie.title }}</p>
-        </mat-card-content>
-      </mat-card>
-      } @empty {
-      <span>The list of watch later is empty</span>
-      }
-    </mat-card-content>
-  </mat-card>
 </div>
