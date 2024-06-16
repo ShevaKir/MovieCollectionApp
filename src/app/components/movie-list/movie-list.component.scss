@@ -19,6 +19,7 @@
   top: 16px;
   height: fit-content;
   margin-right: 30px;
+  margin-left: 30px;
 }
 
 .mat-mdc-card-content {
@@ -53,6 +54,7 @@
     position: static;
     width: 100%;
     order: -1;
+    margin: 0;
   }
 
   .movie-list {
