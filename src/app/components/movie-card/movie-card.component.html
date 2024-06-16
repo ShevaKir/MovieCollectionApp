@@ -1,26 +1,47 @@
-<div class="card">
-    <div class="card__img">
-        <img [src]="'assets/images/' + movie.imgPath" alt="">
+<mat-card class="card" appearance="outlined">
+  <mat-card-header>
+    <div class="card__header">
+      <mat-card-title>{{ movie.title }}</mat-card-title>
+      <mat-card-subtitle>{{ movie.rating }}</mat-card-subtitle>
     </div>
-    <div class="card__title is-flex-space-between">
-        <h3 class="card__title__name">{{ movie.title }}</h3>
-        <p class="card__title__rating">{{ movie.rating }}</p>
-    </div>
-
-    <p class="card__desc">{{ movie.desc }}</p>
-    <div class="card__additinal">
-        <p class="card__additinal__director">Director: {{ movie.director }}</p>
-        <p class="card__additinal__duration">Duration: {{ movie.duration | duration }}</p>
-        <p class="card__additinal__age"> Min age: {{ movie.age }}</p>
-    </div>
-    
-    <div class="buttons is-flex-space-between">
-        <button class="button" title="Add to favourite" (click)="addToFavourite()">
-            <img src="assets/images/icons/favourite-star.svg" alt="Favourite">
-        </button>
-        <button class="button" title="Add to watch List" (click)="addToWatchList()">
-            <img src="assets/images/icons/watch-later.svg" alt="Watch later">
-        </button>
-    </div>
-
-</div>
+  </mat-card-header>
+  <img
+    mat-card-image
+    [src]="'assets/images/' + movie.imgPath"
+    [alt]="'Photo of' + movie.title"
+  />
+  <mat-card-content>
+    <p class="card__desc">
+      {{ movie.desc }}
+    </p>
+    <mat-list role="list">
+      <mat-list-item role="listitem"
+        >Director: {{ movie.director }}</mat-list-item
+      >
+      <mat-list-item role="listitem"
+        >Duration: {{ movie.duration | duration }}</mat-list-item
+      >
+      <mat-list-item role="listitem">Min age: {{ movie.age }}</mat-list-item>
+    </mat-list>
+  </mat-card-content>
+  <mat-card-actions>
+    <button
+      mat-fab
+      extended
+      title="Add to favourite"
+      (click)="addToFavourite()"
+    >
+      <mat-icon>favorite</mat-icon>
+      Favourite
+    </button>
+    <button
+      mat-fab
+      extended
+      title="Add to watch List"
+      (click)="addToWatchList()"
+    >
+      <mat-icon>watch_later</mat-icon>
+      Watch later
+    </button>
+  </mat-card-actions>
+</mat-card>

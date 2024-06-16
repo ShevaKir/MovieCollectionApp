@@ -1,41 +1,17 @@
 .card {
-    background-color: bisque;
-    border-radius: 12px;
-    padding: 30px;
-    height: 100%;
+  max-width: 320px;
+  &__header {
     display: flex;
-    flex-direction: column;
-    &__img {
-        margin-bottom: 12px;
-    }
-
-    &__title {
-        margin-bottom: 12px;
-        font-size: 24px;
-        &__rating {
-        }
-    }
-
-    &__desc {
-        height: auto;
-        margin-bottom: 12px;
-    }
-
-    &__additinal {
-        margin-bottom: 12px;
-    }
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+  &__desc {
+    margin-top: 16px;
+  }
 }
-.buttons {
-    flex: 1;
-    align-items: flex-end;
-}
-.button {
-    width: 30px;
-    height: 30px;
 
-    img {
-        &:hover {
-            filter: invert(65%) sepia(67%) saturate(2637%) hue-rotate(208deg) brightness(86%) contrast(84%);
-        }
-    }
+.mdc-card__actions {
+    gap: 6px;
+    flex-wrap: wrap;
 }
