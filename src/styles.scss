@@ -1,15 +1,5 @@
 @import "assets/styles/reset.scss";
+@import "assets/styles/material-override.scss";
 @import "assets/styles/container.scss";
-
-
-.is-flex-space-between {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-button {
-    cursor: pointer;
-    border: none;
-    background: none;
-}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
