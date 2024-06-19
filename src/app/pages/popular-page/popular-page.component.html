@@ -1,1 +1,5 @@
-<p>popular-page works!</p>
+<div class="movie-list">
+  @for (movie of movies; track movie) {
+  <app-movie-card [movie]="movie"> </app-movie-card>
+  }
+</div>

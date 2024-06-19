@@ -1,0 +1,14 @@
+.wrapper-container {
+    display: flex;
+}
+
+.side-bar {
+    flex: 0 0 200px;
+}
+
+.header, .footer {
+    font-size: 24px;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}

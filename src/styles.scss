@@ -1,5 +1,17 @@
 @import "assets/styles/reset.scss";
 @import "assets/styles/material-override.scss";
 @import "assets/styles/container.scss";
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.movie-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}

@@ -1,4 +1,6 @@
-export const nowPlayingMovies = [
+import { IMovie } from "../models/IMovieCard"
+
+export const nowPlayingMovies:IMovie[]  = [
   {
     "adult": false,
     "backdrop_path": "/coATv42PoiLqAFKStJiMZs2r6Zb.jpg",

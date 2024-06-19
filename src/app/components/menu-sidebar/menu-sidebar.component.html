@@ -1,18 +1,8 @@
 <aside>
-  <nav>
-    <ul>
-      <li>
-        <a [routerLink]="['/']">Now Playing</a>
-      </li>
-      <li>
-        <a [routerLink]="['/popular']">Popular</a>
-      </li>
-      <li>
-        <a [routerLink]="['/top-rated']">Top Rated</a>
-      </li>
-      <li>
-        <a [routerLink]="['/upcoming']">Upcoming</a>
-      </li>
-    </ul>
-  </nav>
+  <mat-nav-list>
+    <a mat-list-item [routerLink]="['/']">Now Playing</a>
+    <a mat-list-item [routerLink]="['/popular']">Popular</a>
+    <a mat-list-item [routerLink]="['/top-rated']">Top Rated</a>
+    <a mat-list-item [routerLink]="['/upcoming']">Upcoming</a>
+  </mat-nav-list>
 </aside>
