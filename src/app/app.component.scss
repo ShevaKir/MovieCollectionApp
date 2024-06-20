@@ -1,14 +1,19 @@
-.wrapper-container {
-    display: flex;
+.header,
+.footer {
+  font-size: 24px;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
-.side-bar {
-    flex: 0 0 200px;
+.example-container {
+  // width: 500px;
+  height: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.5);
 }
-
-.header, .footer {
-    font-size: 24px;
-    text-align: center;
-    margin-top: 20px;
-    margin-bottom: 20px;
+.example-sidenav {
+  width: 200px;
+}
+.sidenav-content{
+    padding: 50px;
 }
