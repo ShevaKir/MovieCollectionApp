@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { MovieCardComponent } from '../../components/movie-card/movie-card.component';
 import { popularMovies } from '../../mock-data/mock-data';
 import { IMovie } from '../../models/IMovieCard';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-popular-page',
@@ -12,4 +13,10 @@ import { IMovie } from '../../models/IMovieCard';
 })
 export class PopularPageComponent {
   movies: IMovie[] = popularMovies;
+
+  constructor(private router: Router) {}
+
+  navigateToDetail(id: number) {
+    this.router.navigate(['popular', 'detail', id]);
+  }
 }

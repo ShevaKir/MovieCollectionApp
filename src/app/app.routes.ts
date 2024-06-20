@@ -4,11 +4,40 @@ import { PopularPageComponent } from './pages/popular-page/popular-page.componen
 import { TopRatedPageComponent } from './pages/top-rated-page/top-rated-page.component';
 import { UpcomingPageComponent } from './pages/upcoming-page/upcoming-page.component';
 import { HomeComponent } from './pages/home/home.component';
+import { MovieDetailComponent } from './pages/movie-detail/movie-detail.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'now-playing', component: NowPlayingPageComponent },
-  { path: 'popular', component: PopularPageComponent },
-  { path: 'top-rated', component: TopRatedPageComponent },
-  { path: 'upcoming', component: UpcomingPageComponent },
+  {
+    path: 'now-playing',
+    component: NowPlayingPageComponent,
+  },
+  {
+    path: 'popular',
+    component: PopularPageComponent,
+  },
+  {
+    path: 'top-rated',
+    component: TopRatedPageComponent,
+  },
+  {
+    path: 'upcoming',
+    component: UpcomingPageComponent,
+  },
+  {
+    path: 'now-playing/detail/:id',
+    component: MovieDetailComponent,
+  },
+  {
+    path: 'popular/detail/:id',
+    component: MovieDetailComponent,
+  },
+  {
+    path: 'top-rated/detail/:id',
+    component: MovieDetailComponent,
+  },
+  {
+    path: 'upcoming/detail/:id',
+    component: MovieDetailComponent,
+  },
 ];

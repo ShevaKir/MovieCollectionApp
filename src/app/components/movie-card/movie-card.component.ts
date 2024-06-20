@@ -24,6 +24,7 @@ export class MovieCardComponent {
 
   @Output() addFavourite = new EventEmitter<any>();
   @Output() addWatchList = new EventEmitter<any>();
+  @Output() viewDetail = new EventEmitter<number>();
 
   addToFavourite() {
     this.addFavourite.emit(this.movie);
@@ -31,5 +32,9 @@ export class MovieCardComponent {
 
   addToWatchList() {
     this.addWatchList.emit(this.movie);
+  }
+
+  detail() {
+    this.viewDetail.emit(this.movie.id);
   }
 }

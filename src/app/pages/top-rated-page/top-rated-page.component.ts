@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { MovieCardComponent } from '../../components/movie-card/movie-card.component';
 import { IMovie } from '../../models/IMovieCard';
 import { topRatedMovies } from '../../mock-data/mock-data';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-top-rated-page',
@@ -12,4 +13,10 @@ import { topRatedMovies } from '../../mock-data/mock-data';
 })
 export class TopRatedPageComponent {
   movies: IMovie[] = topRatedMovies;
+
+  constructor(private router: Router) {}
+
+  navigateToDetail(id: number) {
+    this.router.navigate(['top-rated', 'detail', id]);
+  }
 }
