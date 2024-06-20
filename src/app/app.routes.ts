@@ -3,9 +3,11 @@ import { NowPlayingPageComponent } from './pages/now-playing-page/now-playing-pa
 import { PopularPageComponent } from './pages/popular-page/popular-page.component';
 import { TopRatedPageComponent } from './pages/top-rated-page/top-rated-page.component';
 import { UpcomingPageComponent } from './pages/upcoming-page/upcoming-page.component';
+import { HomeComponent } from './pages/home/home.component';
 
 export const routes: Routes = [
-  { path: '', component: NowPlayingPageComponent },
+  { path: '', component: HomeComponent },
+  { path: 'now-playing', component: NowPlayingPageComponent },
   { path: 'popular', component: PopularPageComponent },
   { path: 'top-rated', component: TopRatedPageComponent },
   { path: 'upcoming', component: UpcomingPageComponent },
