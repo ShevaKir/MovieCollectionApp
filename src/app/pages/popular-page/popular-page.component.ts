@@ -2,12 +2,12 @@ import { Component } from '@angular/core';
 import { MovieCardComponent } from '../../components/movie-card/movie-card.component';
 import { popularMovies } from '../../mock-data/mock-data';
 import { IMovie } from '../../models/IMovieCard';
-import { Router } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-popular-page',
   standalone: true,
-  imports: [MovieCardComponent],
+  imports: [MovieCardComponent, RouterOutlet],
   templateUrl: './popular-page.component.html',
   styleUrl: './popular-page.component.scss',
 })
