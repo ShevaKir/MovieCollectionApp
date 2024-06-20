@@ -13,11 +13,11 @@ import { MatButtonModule } from '@angular/material/button';
 })
 export class HeaderComponent {
   isViewMenu: boolean = true;
-  @Output() toogleMenu = new EventEmitter<boolean>();
+  @Output() toggleMenu = new EventEmitter<boolean>();
 
-  toogleMenuButton() {
+  toggleMenuButton() {
     this.isViewMenu = !this.isViewMenu;
     console.log(this.isViewMenu);
-    this.toogleMenu.emit(this.isViewMenu);
+    this.toggleMenu.emit(this.isViewMenu);
   }
 }

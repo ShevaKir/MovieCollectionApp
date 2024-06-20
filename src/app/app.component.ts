@@ -18,7 +18,7 @@ import { HeaderComponent } from './components/header/header.component';
 })
 export class AppComponent {
   isViewMenu: boolean = true;
-  toogleSidebar(isViewMenu: boolean) {
+  toggleSidebar(isViewMenu: boolean) {
     this.isViewMenu = isViewMenu;
   }
 }
