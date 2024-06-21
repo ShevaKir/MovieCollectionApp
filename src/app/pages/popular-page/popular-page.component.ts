@@ -17,6 +17,6 @@ export class PopularPageComponent {
   constructor(private router: Router) {}
 
   navigateToDetail(id: number) {
-    this.router.navigate(['popular', 'detail', id]);
+    this.router.navigate(['popular', id]);
   }
 }

@@ -17,6 +17,6 @@ export class NowPlayingPageComponent {
   constructor(private router: Router) {}
 
   navigateToDetail(id: number) {
-    this.router.navigate(['now-playing', 'detail', id]);
+    this.router.navigate(['now-playing', id]);
   }
 }

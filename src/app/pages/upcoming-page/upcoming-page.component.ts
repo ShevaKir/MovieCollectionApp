@@ -17,6 +17,6 @@ export class UpcomingPageComponent {
   constructor(private router: Router) {}
 
   navigateToDetail(id: number) {
-    this.router.navigate(['upcoming', 'detail', id]);
+    this.router.navigate(['upcoming', id]);
   }
 }

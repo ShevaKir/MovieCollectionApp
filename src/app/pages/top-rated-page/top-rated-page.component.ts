@@ -17,6 +17,6 @@ export class TopRatedPageComponent {
   constructor(private router: Router) {}
 
   navigateToDetail(id: number) {
-    this.router.navigate(['top-rated', 'detail', id]);
+    this.router.navigate(['top-rated', id]);
   }
 }

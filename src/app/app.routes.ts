@@ -13,81 +13,81 @@ export const routes: Routes = [
   {
     path: 'now-playing',
     component: NowPlayingPageComponent,
-    children: [
-      {
-        path: 'favourite',
-        component: FavouriteMoviesComponent,
-        outlet: 'sub-movie-list',
-      },
-      {
-        path: 'watch-later',
-        component: WatchLaterMoviesComponent,
-        outlet: 'sub-movie-list',
-      },
-    ],
+    // children: [
+    //   {
+    //     path: 'favourite',
+    //     component: FavouriteMoviesComponent,
+    //     outlet: 'sub-movie-list',
+    //   },
+    //   {
+    //     path: 'watch-later',
+    //     component: WatchLaterMoviesComponent,
+    //     outlet: 'sub-movie-list',
+    //   },
+    // ],
   },
   {
     path: 'popular',
     component: PopularPageComponent,
-    children: [
-      {
-        path: 'favourite',
-        component: FavouriteMoviesComponent,
-        outlet: 'sub-movie-list',
-      },
-      {
-        path: 'watch-later',
-        component: WatchLaterMoviesComponent,
-        outlet: 'sub-movie-list',
-      },
-    ],
+    // children: [
+    //   {
+    //     path: 'favourite',
+    //     component: FavouriteMoviesComponent,
+    //     outlet: 'sub-movie-list',
+    //   },
+    //   {
+    //     path: 'watch-later',
+    //     component: WatchLaterMoviesComponent,
+    //     outlet: 'sub-movie-list',
+    //   },
+    // ],
   },
   {
     path: 'top-rated',
     component: TopRatedPageComponent,
-    children: [
-      {
-        path: 'favourite',
-        component: FavouriteMoviesComponent,
-        outlet: 'sub-movie-list',
-      },
-      {
-        path: 'watch-later',
-        component: WatchLaterMoviesComponent,
-        outlet: 'sub-movie-list',
-      },
-    ],
+    // children: [
+    //   {
+    //     path: 'favourite',
+    //     component: FavouriteMoviesComponent,
+    //     outlet: 'sub-movie-list',
+    //   },
+    //   {
+    //     path: 'watch-later',
+    //     component: WatchLaterMoviesComponent,
+    //     outlet: 'sub-movie-list',
+    //   },
+    // ],
   },
   {
     path: 'upcoming',
     component: UpcomingPageComponent,
-    children: [
-      {
-        path: 'favourite',
-        component: FavouriteMoviesComponent,
-        outlet: 'sub-movie-list',
-      },
-      {
-        path: 'watch-later',
-        component: WatchLaterMoviesComponent,
-        outlet: 'sub-movie-list',
-      },
-    ],
+    // children: [
+    //   {
+    //     path: 'favourite',
+    //     component: FavouriteMoviesComponent,
+    //     outlet: 'sub-movie-list',
+    //   },
+    //   {
+    //     path: 'watch-later',
+    //     component: WatchLaterMoviesComponent,
+    //     outlet: 'sub-movie-list',
+    //   },
+    // ],
   },
   {
-    path: 'now-playing/detail/:id',
+    path: 'now-playing/:id',
     component: MovieDetailComponent,
   },
   {
-    path: 'popular/detail/:id',
+    path: 'popular/:id',
     component: MovieDetailComponent,
   },
   {
-    path: 'top-rated/detail/:id',
+    path: 'top-rated/:id',
     component: MovieDetailComponent,
   },
   {
-    path: 'upcoming/detail/:id',
+    path: 'upcoming/:id',
     component: MovieDetailComponent,
   },
 ];
