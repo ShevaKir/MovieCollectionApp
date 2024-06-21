@@ -9,6 +9,10 @@
   </button>
   <span>Movie App</span>
   <span class="spacer"></span>
-  <a mat-button [routerLink]="['/now-playing', { outlets: { 'sub-movie-list': ['favourite'] } }]">Favourite</a>
-  <a mat-button [routerLink]="['/now-playing', { outlets: { 'sub-movie-list': ['watch-later'] } }]">Watch Later</a>
+  <a mat-button [routerLink]="[path, { outlets: { list: ['favourite'] } }]"
+    >Favourite</a
+  >
+  <a mat-button [routerLink]="[path, { outlets: { list: ['watch-later'] } }]"
+    >Watch later</a
+  >
 </mat-toolbar>

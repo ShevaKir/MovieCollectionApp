@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { IMovie } from '../../models/IMovieCard';
 import { MatCardModule } from '@angular/material/card';
 import { MatListModule } from '@angular/material/list';
 import { CommonModule } from '@angular/common';
+import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-favourite-movies',
   standalone: true,
@@ -10,6 +11,8 @@ import { CommonModule } from '@angular/common';
   templateUrl: './favourite-movies.component.html',
   styleUrl: './favourite-movies.component.scss',
 })
-export class FavouriteMoviesComponent {
+export class FavouriteMoviesComponent implements OnInit {
+  ngOnInit(): void {
+  }
   favouriteMovies!: IMovie[];
 }
