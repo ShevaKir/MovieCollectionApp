@@ -26,11 +26,13 @@ export class MovieCardComponent {
   @Output() addWatchList = new EventEmitter<any>();
   @Output() viewDetail = new EventEmitter<number>();
 
-  addToFavourite() {
+  addToFavourite(event: any) {
+    event.stopPropagation();
     this.addFavourite.emit(this.movie);
   }
 
-  addToWatchList() {
+  addToWatchList(event: any) {
+    event.stopPropagation();
     this.addWatchList.emit(this.movie);
   }
 
