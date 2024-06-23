@@ -13,66 +13,18 @@ export const routes: Routes = [
   {
     path: 'now-playing',
     component: NowPlayingPageComponent,
-    children: [
-      {
-        path: 'favourite',
-        component: FavouriteMoviesComponent,
-        outlet: 'list',
-      },
-      {
-        path: 'watch-later',
-        component: WatchLaterMoviesComponent,
-        outlet: 'list',
-      },
-    ],
   },
   {
     path: 'popular',
     component: PopularPageComponent,
-    children: [
-      {
-        path: 'favourite',
-        component: FavouriteMoviesComponent,
-        outlet: 'list',
-      },
-      {
-        path: 'watch-later',
-        component: WatchLaterMoviesComponent,
-        outlet: 'list',
-      },
-    ],
   },
   {
     path: 'top-rated',
     component: TopRatedPageComponent,
-    children: [
-      {
-        path: 'favourite',
-        component: FavouriteMoviesComponent,
-        outlet: 'list',
-      },
-      {
-        path: 'watch-later',
-        component: WatchLaterMoviesComponent,
-        outlet: 'list',
-      },
-    ],
   },
   {
     path: 'upcoming',
     component: UpcomingPageComponent,
-    children: [
-      {
-        path: 'favourite',
-        component: FavouriteMoviesComponent,
-        outlet: 'list',
-      },
-      {
-        path: 'watch-later',
-        component: WatchLaterMoviesComponent,
-        outlet: 'list',
-      },
-    ],
   },
   {
     path: 'now-playing/:id',
@@ -90,4 +42,14 @@ export const routes: Routes = [
     path: 'upcoming/:id',
     component: MovieDetailComponent,
   },
+  {
+    path: 'favourite',
+    component: FavouriteMoviesComponent,
+    outlet: 'list'
+  },
+  {
+    path: 'watch-later',
+    component: WatchLaterMoviesComponent,
+    outlet: 'list'
+  }
 ];
