@@ -3,18 +3,22 @@ import { MovieCardComponent } from '../../components/movie-card/movie-card.compo
 import { IMovie } from '../../models/IMovieCard';
 import { upcomingMovies } from '../../mock-data/mock-data';
 import { Router, RouterOutlet } from '@angular/router';
+import { BaseMoviesComponent } from '../../general/base-movies.component';
+import { SubHeaderComponent } from '../../components/sub-header/sub-header.component';
 
 @Component({
   selector: 'app-upcoming-page',
   standalone: true,
-  imports: [MovieCardComponent, RouterOutlet],
+  imports: [MovieCardComponent, RouterOutlet, SubHeaderComponent],
   templateUrl: './upcoming-page.component.html',
   styleUrl: './upcoming-page.component.scss',
 })
-export class UpcomingPageComponent {
+export class UpcomingPageComponent extends BaseMoviesComponent {
   movies: IMovie[] = upcomingMovies;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router) {
+    super();
+  }
 
   navigateToDetail(id: number) {
     this.router.navigate(['upcoming', id]);
