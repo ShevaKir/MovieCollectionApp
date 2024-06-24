@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { MovieCardComponent } from '../../components/movie-card/movie-card.component';
 import { popularMovies } from '../../mock-data/mock-data';
 import { IMovie } from '../../models/IMovieCard';
-import { Router, RouterOutlet } from '@angular/router';
+import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
 import { BaseMoviesComponent } from '../../general/base-movies.component';
 import { SubHeaderComponent } from '../../components/sub-header/sub-header.component';
 
@@ -16,8 +16,8 @@ import { SubHeaderComponent } from '../../components/sub-header/sub-header.compo
 export class PopularPageComponent extends BaseMoviesComponent {
   movies: IMovie[] = popularMovies;
 
-  constructor(private router: Router) {
-    super();
+  constructor(private router: Router, route: ActivatedRoute) {
+    super(route);
   }
 
   navigateToDetail(id: number) {
