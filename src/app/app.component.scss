@@ -16,4 +16,18 @@
 }
 .sidenav-content{
     padding: 50px;
+    display: flex;
+}
+
+
+@media (max-width: 899px) {
+  .sidenav-content {
+    flex-direction: column;
+  }
+  .content {
+    order: 1;
+  }
+  .sub-content{
+    order: -1;
+  }
 }

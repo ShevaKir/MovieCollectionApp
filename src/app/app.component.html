@@ -5,9 +5,11 @@
   </mat-drawer>
 
   <div class="sidenav-content">
+    <div class="content">
+      <router-outlet></router-outlet>
+    </div>
     <div class="sub-content">
       <router-outlet name="list"></router-outlet>
     </div>
-    <router-outlet></router-outlet>
   </div>
 </mat-drawer-container>
