@@ -1,0 +1,15 @@
+.movie-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.mat-mdc-card-content {
+  display: flex;
+  align-items: center;
+}
+
+.header-image {
+  background-size: cover;
+  margin-right: 16px;
+  margin-bottom: 0;
+}

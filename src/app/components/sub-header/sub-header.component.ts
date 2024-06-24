@@ -26,7 +26,6 @@ export class SubHeaderComponent implements OnInit {
   }
 
   navigateWithMovies(path: string, movieIds: number[]) {
-    debugger
     const data = JSON.stringify(movieIds);
 
     this.router.navigate([{ outlets: { list: [path] } }], {

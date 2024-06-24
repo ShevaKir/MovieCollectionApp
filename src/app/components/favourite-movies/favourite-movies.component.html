@@ -1,17 +1,20 @@
-@for (movie of favouriteMovies; track movie) {
+<div class="movie-list">
+  @for (movie of favouriteMovies; track movie) {
 
-<mat-card class="list__item" appearance="outlined">
-  <mat-card-content
-    ><div
-      mat-card-avatar
-      class="header-image"
-      [ngStyle]="{
-        'background-image': 'url(assets/images/' + movie.poster_path + ')'
-      }"
-    ></div>
-    <p>{{ movie.title }}</p>
-  </mat-card-content>
-</mat-card>
-} @empty {
-<span>The list of favourite is empty</span>
-}
+  <mat-card class="list__item" appearance="outlined">
+    <mat-card-content
+      ><div
+        mat-card-avatar
+        class="header-image"
+        [ngStyle]="{
+          'background-image':
+            'url(https://image.tmdb.org/t/p/w500/' + movie.poster_path + ')'
+        }"
+      ></div>
+      <p>{{ movie.title }}</p>
+    </mat-card-content>
+  </mat-card>
+  } @empty {
+  <span>The list of favourite is empty</span>
+  }
+</div>
