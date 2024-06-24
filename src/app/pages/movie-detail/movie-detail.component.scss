@@ -16,3 +16,27 @@
     display: flex;
   }
 }
+
+@media (max-width: 1240px) {
+  .card {
+    &__actions {
+      order: -1;
+      align-self: self-start;
+      width: 100%;
+    }
+    &__header {
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    &__content {
+      flex-direction: column;
+    }
+    &__overview {
+      margin-top: 20px;
+    }
+  }
+  .back {
+    flex: 1;
+  }
+}

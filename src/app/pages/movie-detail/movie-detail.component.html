@@ -3,14 +3,16 @@
     <div class="card__header">
       <mat-card-title class="card__title">{{ movie.title }}</mat-card-title>
       <div class="card__actions">
-        <button
-          mat-icon-button
-          class="example-icon"
-          aria-label="Example icon-button with menu icon"
-          (click)="navigateBack()"
-        >
-          <mat-icon>arrow_back</mat-icon>
-        </button>
+        <div class="back">
+          <button
+            mat-icon-button
+            aria-label="Example icon-button with menu icon"
+            (click)="navigateBack()"
+          >
+            <mat-icon>arrow_back</mat-icon>
+          </button>
+        </div>
+
         <button
           mat-fab
           extended
