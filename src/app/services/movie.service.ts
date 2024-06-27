@@ -52,4 +52,12 @@ export class MovieService {
   public addMovieToWatchLater(movie: IMovie, collection: MovieCollection) {
     this._movies[collection].addWatchLater(movie);
   }
+
+  public removeMovieFromFavourite(movie: IMovie, collection: MovieCollection) {
+    this._movies[collection].removeFavourite(movie);
+  }
+
+  public removeMovieFromWatchLater(movie: IMovie, collection: MovieCollection) {
+    this._movies[collection].removeWatchLater(movie);
+  }
 }

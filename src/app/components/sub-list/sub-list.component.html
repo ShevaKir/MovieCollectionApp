@@ -11,7 +11,14 @@
             'url(https://image.tmdb.org/t/p/w500/' + movie.poster_path + ')'
         }"
       ></div>
-      <p>{{ movie.title }}</p>
+      <p class="list__item__title">{{ movie.title }}</p>
+      <button
+        mat-icon-button
+        aria-label="Example icon-button with menu icon"
+        (click)="remove(movie.id)"
+      >
+        <mat-icon>delete</mat-icon>
+      </button>
     </mat-card-content>
   </mat-card>
   } @empty {

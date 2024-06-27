@@ -13,7 +13,7 @@
       }
     </div>
     @if(subMovieList.length) {
-    <app-sub-list [movies]="subMovieList"></app-sub-list>
+    <app-sub-list [movies]="subMovieList" (removeMovie)="removeMovie($event)"></app-sub-list>
     }
   </div>
 </div>

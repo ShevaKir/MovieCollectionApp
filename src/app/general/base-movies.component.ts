@@ -15,16 +15,29 @@ export abstract class BaseMoviesComponent {
   constructor(private router: Router, protected movieService: MovieService) {}
 
   addMovieToFavourite(movie: IMovie) {
-    debugger
     this.movieService.addMovieToFavourite(movie, this.movieCollection);
     this.updateSubMovieList();
-    console.log(this.subMovieList)
   }
 
   addMovieToWatchLater(movie: IMovie) {
     this.movieService.addMovieToWatchLater(movie, this.movieCollection);
     this.updateSubMovieList();
-    console.log(this.subMovieList)
+  }
+
+  removeMovie(id: number) {
+    const movie: IMovie = this.subMovieList.find((m) => m.id === id) as IMovie;
+    switch (this.selectedSubMovieList) {
+      case SelectMovieList.Favourite:
+        this.movieService.removeMovieFromFavourite(movie, this.movieCollection);
+        break;
+      case SelectMovieList.WatchLater:
+        this.movieService.removeMovieFromWatchLater(
+          movie,
+          this.movieCollection
+        );
+        break;
+    }
+    this.updateSubMovieList();
   }
 
   navigateToDetail(id: number) {
@@ -52,7 +65,6 @@ export abstract class BaseMoviesComponent {
   }
 
   selectedMovieList(selectedTab: SelectMovieList) {
-    debugger
     this.selectedSubMovieList = selectedTab;
     this.updateSubMovieList();
   }
