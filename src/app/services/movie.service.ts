@@ -35,6 +35,10 @@ export class MovieService {
     return this._movies[MovieCollection.Upcoming].getMovieList();
   }
 
+  public getMovieById(id: number, collection: MovieCollection): IMovie {
+    return this._movies[collection].getMovieById(id);
+  }
+
   public getFavorites(collection: MovieCollection): ReadonlyArray<IMovie> {
     return this._movies[collection].getFavoriteList();
   }

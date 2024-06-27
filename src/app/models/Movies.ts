@@ -21,6 +21,10 @@ export class Movies {
     return Array.from(this._watchLater);
   }
 
+  getMovieById(id: number): IMovie {
+    return this._movies.find((m) => m.id === id) as IMovie;
+  }
+
   addFavorite(movie: IMovie) {
     this._favorite.add(movie);
   }
