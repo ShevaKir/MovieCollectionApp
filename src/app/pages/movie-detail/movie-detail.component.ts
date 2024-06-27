@@ -43,33 +43,15 @@ export class MovieDetailComponent implements OnInit {
     this.movie = this.movieService.getMovieById(id, this.collection);
   }
 
-  addFavourite(id: number) {
-    if (this.favourite === 0) {
-      this.favourite = id;
-    } else {
-      this.favourite = 0;
-    }
+  addFavourite() {
+    this.movieService.addMovieToFavorite(this.movie, this.collection);
   }
 
-  addWatchLater(id: number) {
-    if (this.watchLater === 0) {
-      this.watchLater = id;
-    } else {
-      this.watchLater = 0;
-    }
+  addWatchLater() {
+    this.movieService.addMovieToWatchLater(this.movie, this.collection);
   }
 
   navigateBack() {
-    let queryParams: any = {};
-    if (this.favourite !== 0) {
-      queryParams.favourite = this.favourite;
-    }
-    if (this.watchLater !== 0) {
-      queryParams.watchLater = this.watchLater;
-    }
-
-    this.router.navigate([this.collection], {
-      queryParams: queryParams,
-    });
+    this.router.navigate([this.collection]);
   }
 }
