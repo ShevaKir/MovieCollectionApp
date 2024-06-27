@@ -2,7 +2,7 @@ import { IMovie } from './IMovieCard';
 
 export class Movies {
   private _movies: IMovie[] = [];
-  private _favorite: Set<IMovie> = new Set();
+  private _favourite: Set<IMovie> = new Set();
   private _watchLater: Set<IMovie> = new Set();
 
   constructor(movies: IMovie[]) {
@@ -13,8 +13,8 @@ export class Movies {
     return this._movies;
   }
 
-  getFavoriteList(): ReadonlyArray<IMovie> {
-    return Array.from(this._favorite);
+  getFavouriteList(): ReadonlyArray<IMovie> {
+    return Array.from(this._favourite);
   }
 
   getWatchLaterList(): ReadonlyArray<IMovie> {
@@ -25,11 +25,11 @@ export class Movies {
     return this._movies.find((m) => m.id === id) as IMovie;
   }
 
-  addFavorite(movie: IMovie) {
-    this._favorite.add(movie);
+  addFavourite(movie: IMovie) {
+    this._favourite.add(movie);
   }
-  removeFavorite(movie: IMovie) {
-    this._favorite.delete(movie);
+  removeFavourite(movie: IMovie) {
+    this._favourite.delete(movie);
   }
   addWatchLater(movie: IMovie) {
     this._watchLater.add(movie);

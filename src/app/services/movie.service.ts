@@ -39,15 +39,15 @@ export class MovieService {
     return this._movies[collection].getMovieById(id);
   }
 
-  public getFavorites(collection: MovieCollection): ReadonlyArray<IMovie> {
-    return this._movies[collection].getFavoriteList();
+  public getFavourites(collection: MovieCollection): ReadonlyArray<IMovie> {
+    return this._movies[collection].getFavouriteList();
   }
   public getWatchLaters(collection: MovieCollection): ReadonlyArray<IMovie> {
     return this._movies[collection].getWatchLaterList();
   }
 
-  public addMovieToFavorite(movie: IMovie, collection: MovieCollection) {
-    this._movies[collection].addFavorite(movie);
+  public addMovieToFavourite(movie: IMovie, collection: MovieCollection) {
+    this._movies[collection].addFavourite(movie);
   }
   public addMovieToWatchLater(movie: IMovie, collection: MovieCollection) {
     this._movies[collection].addWatchLater(movie);

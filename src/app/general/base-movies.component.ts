@@ -15,7 +15,7 @@ export abstract class BaseMoviesComponent {
   constructor(private router: Router, protected movieService: MovieService) {}
 
   addMovieToFavourite(movie: IMovie) {
-    this.movieService.addMovieToFavorite(movie, this.movieCollection);
+    this.movieService.addMovieToFavourite(movie, this.movieCollection);
     this.updateSubMovieList();
   }
 
@@ -35,8 +35,8 @@ export abstract class BaseMoviesComponent {
       case SelectMovieList.Empty:
         this.subMovieList = [];
         break;
-      case SelectMovieList.Favorite:
-        this.subMovieList = this.movieService.getFavorites(
+      case SelectMovieList.Favourite:
+        this.subMovieList = this.movieService.getFavourites(
           this.movieCollection
         );
         break;

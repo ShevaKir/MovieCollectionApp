@@ -1,5 +1,5 @@
 export enum SelectMovieList {
     Empty,
-    Favorite,
+    Favourite,
     WatchLater
 }

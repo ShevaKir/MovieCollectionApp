@@ -44,7 +44,7 @@ export class MovieDetailComponent implements OnInit {
   }
 
   addFavourite() {
-    this.movieService.addMovieToFavorite(this.movie, this.collection);
+    this.movieService.addMovieToFavourite(this.movie, this.collection);
   }
 
   addWatchLater() {
