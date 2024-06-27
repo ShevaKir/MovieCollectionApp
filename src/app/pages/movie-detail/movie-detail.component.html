@@ -1,0 +1,67 @@
+<mat-card class="card" appearance="outlined">
+  <mat-card-header>
+    <div class="card__header">
+      <mat-card-title class="card__title">{{ movie.title }}</mat-card-title>
+      <div class="card__actions">
+        <div class="back">
+          <button
+            mat-icon-button
+            aria-label="Example icon-button with menu icon"
+            (click)="navigateBack()"
+          >
+            <mat-icon>arrow_back</mat-icon>
+          </button>
+        </div>
+
+        <button
+          mat-fab
+          extended
+          title="Add to favourite"
+          (click)="addFavourite(movie.id)"
+        >
+          <mat-icon>favorite</mat-icon>
+          Favourite
+        </button>
+        <button
+          mat-fab
+          extended
+          title="Add to watch List"
+          (click)="addWatchLater(movie.id)"
+        >
+          <mat-icon>watch_later</mat-icon>
+          Watch later
+        </button>
+      </div>
+    </div>
+  </mat-card-header>
+  <div class="card__content">
+    <img
+      mat-card-image
+      [src]="'https://image.tmdb.org/t/p/w500/' + movie.poster_path"
+      [alt]="'Photo of' + movie.title"
+    />
+    <mat-card-content class="card__overview">
+      <p class="card__desc">
+        {{ movie.overview }}
+      </p>
+      <mat-list role="list">
+        <mat-list-item role="listitem"
+          >Original title: {{ movie.original_title }}</mat-list-item
+        >
+        <mat-list-item role="listitem"
+          >Original Language:
+          {{ movie.original_language | uppercase }}</mat-list-item
+        >
+        <mat-list-item role="listitem"
+          >Release Date: {{ movie.release_date }}</mat-list-item
+        >
+      </mat-list>
+      <p>Screenshot:</p>
+      <img
+        mat-card-image
+        [src]="'https://image.tmdb.org/t/p/w500/' + movie.backdrop_path"
+        alt=""
+      />
+    </mat-card-content>
+  </div>
+</mat-card>

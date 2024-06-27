@@ -1,0 +1,17 @@
+<div class="movies">
+  <app-sub-header
+    [favouriteMovieIds]="favouriteIds"
+    [watchLaterMovieIds]="watchLaterIds"
+  ></app-sub-header>
+  <div class="movie-list">
+    @for (movie of movies; track movie) {
+    <app-movie-card
+      [movie]="movie"
+      (addFavourite)="addMovieToFavourite($event)"
+      (addWatchList)="addMovieToWatchLater($event)"
+      (viewDetail)="navigateToDetail($event)"
+    >
+    </app-movie-card>
+    }
+  </div>
+</div>

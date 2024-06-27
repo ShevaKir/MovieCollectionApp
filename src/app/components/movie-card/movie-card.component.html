@@ -1,27 +1,26 @@
-<mat-card class="card" appearance="outlined">
+<mat-card class="card" appearance="outlined" (click)="detail()">
   <mat-card-header>
     <div class="card__header">
-      <mat-card-title>{{ movie.title }}</mat-card-title>
-      <mat-card-subtitle>{{ movie.rating }}</mat-card-subtitle>
+      <mat-card-title class="card__title">{{ movie.title }}</mat-card-title>
+      <mat-card-subtitle>{{ movie.vote_average }}</mat-card-subtitle>
     </div>
   </mat-card-header>
   <img
     mat-card-image
-    [src]="'assets/images/' + movie.imgPath"
+    [src]="'https://image.tmdb.org/t/p/w500/' + movie.poster_path"
     [alt]="'Photo of' + movie.title"
   />
   <mat-card-content>
     <p class="card__desc">
-      {{ movie.desc }}
+      {{ movie.overview }}
     </p>
     <mat-list role="list">
       <mat-list-item role="listitem"
-        >Director: {{ movie.director }}</mat-list-item
+        >Original Language: {{ movie.original_language }}</mat-list-item
       >
       <mat-list-item role="listitem"
-        >Duration: {{ movie.duration | duration }}</mat-list-item
+        >Release Date: {{ movie.release_date }}</mat-list-item
       >
-      <mat-list-item role="listitem">Min age: {{ movie.age }}</mat-list-item>
     </mat-list>
   </mat-card-content>
   <mat-card-actions class="card__actions">
@@ -29,7 +28,7 @@
       mat-fab
       extended
       title="Add to favourite"
-      (click)="addToFavourite()"
+      (click)="addToFavourite($event)"
     >
       <mat-icon>favorite</mat-icon>
       Favourite
@@ -38,7 +37,7 @@
       mat-fab
       extended
       title="Add to watch List"
-      (click)="addToWatchList()"
+      (click)="addToWatchList($event)"
     >
       <mat-icon>watch_later</mat-icon>
       Watch later

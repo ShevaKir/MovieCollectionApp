@@ -1,1 +1,15 @@
-<app-movie-list></app-movie-list>
+<app-header (toggleMenu)="toggleSidebar($event)"></app-header>
+<mat-drawer-container class="example-container" autosize>
+  <mat-drawer #drawer class="example-sidenav" mode="side" [opened]="isViewMenu">
+    <app-menu-sidebar class="side-bar"></app-menu-sidebar>
+  </mat-drawer>
+
+  <div class="sidenav-content">
+    <div class="content">
+      <router-outlet></router-outlet>
+    </div>
+    <div class="sub-content">
+      <router-outlet name="list"></router-outlet>
+    </div>
+  </div>
+</mat-drawer-container>
