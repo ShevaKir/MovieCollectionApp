@@ -15,13 +15,16 @@ export abstract class BaseMoviesComponent {
   constructor(private router: Router, protected movieService: MovieService) {}
 
   addMovieToFavourite(movie: IMovie) {
+    debugger
     this.movieService.addMovieToFavourite(movie, this.movieCollection);
     this.updateSubMovieList();
+    console.log(this.subMovieList)
   }
 
   addMovieToWatchLater(movie: IMovie) {
     this.movieService.addMovieToWatchLater(movie, this.movieCollection);
     this.updateSubMovieList();
+    console.log(this.subMovieList)
   }
 
   navigateToDetail(id: number) {
@@ -49,6 +52,7 @@ export abstract class BaseMoviesComponent {
   }
 
   selectedMovieList(selectedTab: SelectMovieList) {
+    debugger
     this.selectedSubMovieList = selectedTab;
     this.updateSubMovieList();
   }

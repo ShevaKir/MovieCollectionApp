@@ -6,6 +6,16 @@
   margin-bottom: 20px;
 }
 
+.movie-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.content {
+  display: flex;
+}
+
 .example-container {
   height: 100%;
   border: 1px solid rgba(0, 0, 0, 0.5);
