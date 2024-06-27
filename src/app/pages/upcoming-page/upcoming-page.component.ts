@@ -14,13 +14,10 @@ import { SubHeaderComponent } from '../../components/sub-header/sub-header.compo
   styleUrl: './upcoming-page.component.scss',
 })
 export class UpcomingPageComponent extends BaseMoviesComponent {
+  override movieCollection: string = 'upcoming';
   movies: IMovie[] = upcomingMovies;
 
-  constructor(private router: Router, route: ActivatedRoute) {
-    super(route);
-  }
-
-  navigateToDetail(id: number) {
-    this.router.navigate(['upcoming', id]);
+  constructor(router: Router, route: ActivatedRoute) {
+    super(router, route);
   }
 }

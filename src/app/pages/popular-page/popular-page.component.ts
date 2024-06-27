@@ -14,13 +14,10 @@ import { SubHeaderComponent } from '../../components/sub-header/sub-header.compo
   styleUrl: './popular-page.component.scss',
 })
 export class PopularPageComponent extends BaseMoviesComponent {
+  override movieCollection: string = 'popular';
   movies: IMovie[] = popularMovies;
 
-  constructor(private router: Router, route: ActivatedRoute) {
-    super(route);
-  }
-
-  navigateToDetail(id: number) {
-    this.router.navigate(['popular', id]);
+  constructor(router: Router, route: ActivatedRoute) {
+    super(router, route);
   }
 }

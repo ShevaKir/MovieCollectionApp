@@ -30,26 +30,31 @@ export class MovieDetailComponent implements OnInit {
   movie!: IMovie;
   favourite: number = 0;
   watchLater: number = 0;
+  collection: string = '';
 
   constructor(private router: Router, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     const id: number = +this.route.snapshot.params['id'];
-    const collection: string = this.route.snapshot.url[0].path;
+    this.collection = this.route.snapshot.queryParamMap.get(
+      'collection'
+    ) as string;
 
-    switch (collection) {
-      case 'now-playing':
-        this.movie = nowPlayingMovies.find((m) => m.id === id) as IMovie;
-        break;
-      case 'popular':
-        this.movie = popularMovies.find((m) => m.id === id) as IMovie;
-        break;
-      case 'top-rated':
-        this.movie = topRatedMovies.find((m) => m.id === id) as IMovie;
-        break;
-      case 'upcoming':
-        this.movie = upcomingMovies.find((m) => m.id === id) as IMovie;
-        break;
+    if (this.collection !== null) {
+      switch (this.collection) {
+        case 'now-playing':
+          this.movie = nowPlayingMovies.find((m) => m.id === id) as IMovie;
+          break;
+        case 'popular':
+          this.movie = popularMovies.find((m) => m.id === id) as IMovie;
+          break;
+        case 'top-rated':
+          this.movie = topRatedMovies.find((m) => m.id === id) as IMovie;
+          break;
+        case 'upcoming':
+          this.movie = upcomingMovies.find((m) => m.id === id) as IMovie;
+          break;
+      }
     }
   }
 
@@ -70,8 +75,6 @@ export class MovieDetailComponent implements OnInit {
   }
 
   navigateBack() {
-    const urlSegments = this.route.snapshot.url;
-
     let queryParams: any = {};
     if (this.favourite !== 0) {
       queryParams.favourite = this.favourite;
@@ -79,17 +82,9 @@ export class MovieDetailComponent implements OnInit {
     if (this.watchLater !== 0) {
       queryParams.watchLater = this.watchLater;
     }
-  
-    if (urlSegments.length > 0) {
-      const newUrl = urlSegments
-        .slice(0, -1)
-        .map((segment) => segment.path)
-        .join('/');
-      this.router.navigate([`/${newUrl}`], {
-        queryParams: queryParams,
-      });
-    } else {
-      this.router.navigate(['/']);
-    }
+
+    this.router.navigate([this.collection], {
+      queryParams: queryParams,
+    });
   }
 }

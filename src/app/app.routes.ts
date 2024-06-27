@@ -28,20 +28,8 @@ export const routes: Routes = [
     component: UpcomingPageComponent,
   },
   {
-    path: 'now-playing/:id',
-    component: MovieDetailComponent,
-  },
-  {
-    path: 'popular/:id',
-    component: MovieDetailComponent,
-  },
-  {
-    path: 'top-rated/:id',
-    component: MovieDetailComponent,
-  },
-  {
-    path: 'upcoming/:id',
-    component: MovieDetailComponent,
+    path: 'movie/:id',
+    component: MovieDetailComponent
   },
   {
     path: 'favourite',

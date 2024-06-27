@@ -14,13 +14,10 @@ import { BaseMoviesComponent } from '../../general/base-movies.component';
   styleUrl: './now-playing-page.component.scss',
 })
 export class NowPlayingPageComponent extends BaseMoviesComponent {
+  override movieCollection: string = 'now-playing';
   movies: IMovie[] = nowPlayingMovies;
 
-  constructor(private router: Router, route: ActivatedRoute) {
-    super(route);
-  }
-
-  navigateToDetail(id: number) {
-    this.router.navigate(['now-playing', id]);
+  constructor(router: Router, route: ActivatedRoute) {
+    super(router, route);
   }
 }

@@ -14,13 +14,10 @@ import { SubHeaderComponent } from '../../components/sub-header/sub-header.compo
   styleUrl: './top-rated-page.component.scss',
 })
 export class TopRatedPageComponent extends BaseMoviesComponent {
+  override movieCollection: string = 'top-rated';
   movies: IMovie[] = topRatedMovies;
 
-  constructor(private router: Router, route: ActivatedRoute) {
-    super(route);
-  }
-
-  navigateToDetail(id: number) {
-    this.router.navigate(['top-rated', id]);
+  constructor(router: Router, route: ActivatedRoute) {
+    super(router, route);
   }
 }
