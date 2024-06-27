@@ -1,8 +1,5 @@
 <div class="movies">
-  <app-sub-header
-    [favouriteMovieIds]="favouriteIds"
-    [watchLaterMovieIds]="watchLaterIds"
-  ></app-sub-header>
+  <app-sub-header></app-sub-header>
   <div class="movie-list">
     @for (movie of movies; track movie) {
     <app-movie-card

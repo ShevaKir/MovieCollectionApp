@@ -1,34 +1,26 @@
 import { Component } from '@angular/core';
 import { IMovie } from '../models/IMovieCard';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { MovieCollection } from '../enums/MovieCollection';
+import { MovieService } from '../services/movie.service';
 
 @Component({
   template: '',
 })
 export abstract class BaseMoviesComponent {
   abstract movieCollection: MovieCollection;
-  favouriteIds: number[] = [];
-  watchLaterIds: number[] = [];
 
-  constructor(private router: Router, private route: ActivatedRoute) {}
+  constructor(
+    private router: Router,
+    protected movieService: MovieService
+  ) {}
 
   addMovieToFavourite(movie: IMovie) {
-    const index = this.favouriteIds.indexOf(movie.id);
-    if (index > -1) {
-      this.favouriteIds.splice(index, 1);
-    } else {
-      this.favouriteIds.push(movie.id);
-    }
+    this.movieService.addMovieToFavorite(movie, this.movieCollection);
   }
 
   addMovieToWatchLater(movie: IMovie) {
-    const index = this.watchLaterIds.indexOf(movie.id);
-    if (index > -1) {
-      this.watchLaterIds.splice(index, 1);
-    } else {
-      this.watchLaterIds.push(movie.id);
-    }
+    this.movieService.addMovieToWatchLater(movie, this.movieCollection);
   }
 
   navigateToDetail(id: number) {

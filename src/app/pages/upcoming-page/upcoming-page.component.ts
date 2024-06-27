@@ -14,17 +14,12 @@ import { MovieCollection } from '../../enums/MovieCollection';
   templateUrl: './upcoming-page.component.html',
   styleUrl: './upcoming-page.component.scss',
 })
-export class UpcomingPageComponent extends BaseMoviesComponent implements OnInit {
+export class UpcomingPageComponent
+  extends BaseMoviesComponent
+  implements OnInit
+{
   override movieCollection: MovieCollection = MovieCollection.Upcoming;
   movies!: ReadonlyArray<IMovie>;
-
-  constructor(
-    router: Router,
-    route: ActivatedRoute,
-    private movieService: MovieService
-  ) {
-    super(router, route);
-  }
 
   ngOnInit(): void {
     this.movies = this.movieService.getUpcomingMovies();
