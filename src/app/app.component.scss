@@ -7,27 +7,22 @@
 }
 
 .example-container {
-  // width: 500px;
   height: 100%;
   border: 1px solid rgba(0, 0, 0, 0.5);
 }
 .example-sidenav {
   width: 200px;
 }
-.sidenav-content{
-    padding: 50px;
-    display: flex;
+.sidenav-content {
+  padding: 50px;
+  display: flex;
 }
-
 
 @media (max-width: 899px) {
   .sidenav-content {
     flex-direction: column;
   }
-  .content {
-    order: 1;
-  }
-  .sub-content{
+  .sub-content {
     order: -1;
   }
 }

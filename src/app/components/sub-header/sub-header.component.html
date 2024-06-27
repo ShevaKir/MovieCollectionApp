@@ -1,9 +1,23 @@
 <mat-toolbar>
-  <a mat-button (click)="navigateToEmpty()">All movies</a>
-  <a mat-button (click)="navigateWithMovies('favourite', favouriteMovieIds)"
-    >Favourite</a
+  <button
+    mat-button
+    (click)="selectTab(SelectMovieList.Empty)"
+    [ngClass]="{ 'active-tab': currentTab === SelectMovieList.Empty }"
   >
-  <a mat-button (click)="navigateWithMovies('watch-later', watchLaterMovieIds)"
-    >Watch later</a
+    All movies
+  </button>
+  <button
+    mat-button
+    (click)="selectTab(SelectMovieList.Favourite)"
+    [ngClass]="{ 'active-tab': currentTab === SelectMovieList.Favourite }"
   >
+    Favourite
+  </button>
+  <button
+    mat-button
+    (click)="selectTab(SelectMovieList.WatchLater)"
+    [ngClass]="{ 'active-tab': currentTab === SelectMovieList.WatchLater }"
+  >
+    Watch later
+  </button>
 </mat-toolbar>
