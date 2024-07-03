@@ -6,6 +6,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { IMovieResponse } from '../models/movie-response.model';
+import { IMovieDetails } from '../models/movie-details.model';
 
 @Injectable({
   providedIn: 'root',
@@ -26,8 +27,14 @@ export class MovieService {
     });
   }
 
-  public getMovieById(id: number, collection: MovieCollection): IMovie {
-    throw new Error();
+  public getMovieById(id: number): Observable<IMovieDetails> {
+    const headers = new HttpHeaders({
+      accept: 'application/json',
+      Authorization: `Bearer ${this._accessToken}`,
+    });
+    return this.http.get<IMovieDetails>(`${this._apiUrl}/${id}`, {
+      headers,
+    });
   }
 
   public getFavourites(collection: MovieCollection): ReadonlyArray<IMovie> {

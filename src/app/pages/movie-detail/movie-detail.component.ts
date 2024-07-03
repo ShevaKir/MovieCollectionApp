@@ -4,10 +4,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
-import { IMovie } from '../../models/movie.model';
 import { UpperCasePipe } from '@angular/common';
 import { MovieService } from '../../services/movie.service';
 import { MovieCollection } from '../../enums/MovieCollection';
+import { IMovieDetails } from '../../models/movie-details.model';
 
 @Component({
   selector: 'app-movie-detail',
@@ -23,7 +23,7 @@ import { MovieCollection } from '../../enums/MovieCollection';
   styleUrl: './movie-detail.component.scss',
 })
 export class MovieDetailComponent implements OnInit {
-  movie!: IMovie;
+  movie!: IMovieDetails;
   favourite: number = 0;
   watchLater: number = 0;
   collection: MovieCollection = MovieCollection.None;
@@ -36,19 +36,18 @@ export class MovieDetailComponent implements OnInit {
 
   ngOnInit(): void {
     const id: number = +this.route.snapshot.params['id'];
-    this.collection = this.route.snapshot.queryParamMap.get(
-      'collection'
-    ) as MovieCollection;
 
-    this.movie = this.movieService.getMovieById(id, this.collection);
+    this.movieService.getMovieById(id).subscribe((movie) => {
+      this.movie = movie;
+    });
   }
 
   addFavourite() {
-    this.movieService.addMovieToFavourite(this.movie, this.collection);
+    //this.movieService.addMovieToFavourite(this.movie, this.collection);
   }
 
   addWatchLater() {
-    this.movieService.addMovieToWatchLater(this.movie, this.collection);
+    //this.movieService.addMovieToWatchLater(this.movie, this.collection);
   }
 
   navigateBack() {
