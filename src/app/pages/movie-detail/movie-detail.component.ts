@@ -1,17 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import {
-  nowPlayingMovies,
-  topRatedMovies,
-  popularMovies,
-  upcomingMovies,
-} from '../../mock-data/mock-data';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { IMovie } from '../../models/IMovieCard';
 import { UpperCasePipe } from '@angular/common';
+import { MovieService } from '../../services/movie.service';
+import { MovieCollection } from '../../enums/MovieCollection';
 
 @Component({
   selector: 'app-movie-detail',
@@ -30,61 +26,32 @@ export class MovieDetailComponent implements OnInit {
   movie!: IMovie;
   favourite: number = 0;
   watchLater: number = 0;
-  collection: string = '';
+  collection: MovieCollection = MovieCollection.None;
 
-  constructor(private router: Router, private route: ActivatedRoute) {}
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private movieService: MovieService
+  ) {}
 
   ngOnInit(): void {
     const id: number = +this.route.snapshot.params['id'];
     this.collection = this.route.snapshot.queryParamMap.get(
       'collection'
-    ) as string;
+    ) as MovieCollection;
 
-    if (this.collection !== null) {
-      switch (this.collection) {
-        case 'now-playing':
-          this.movie = nowPlayingMovies.find((m) => m.id === id) as IMovie;
-          break;
-        case 'popular':
-          this.movie = popularMovies.find((m) => m.id === id) as IMovie;
-          break;
-        case 'top-rated':
-          this.movie = topRatedMovies.find((m) => m.id === id) as IMovie;
-          break;
-        case 'upcoming':
-          this.movie = upcomingMovies.find((m) => m.id === id) as IMovie;
-          break;
-      }
-    }
+    this.movie = this.movieService.getMovieById(id, this.collection);
   }
 
-  addFavourite(id: number) {
-    if (this.favourite === 0) {
-      this.favourite = id;
-    } else {
-      this.favourite = 0;
-    }
+  addFavourite() {
+    this.movieService.addMovieToFavourite(this.movie, this.collection);
   }
 
-  addWatchLater(id: number) {
-    if (this.watchLater === 0) {
-      this.watchLater = id;
-    } else {
-      this.watchLater = 0;
-    }
+  addWatchLater() {
+    this.movieService.addMovieToWatchLater(this.movie, this.collection);
   }
 
   navigateBack() {
-    let queryParams: any = {};
-    if (this.favourite !== 0) {
-      queryParams.favourite = this.favourite;
-    }
-    if (this.watchLater !== 0) {
-      queryParams.watchLater = this.watchLater;
-    }
-
-    this.router.navigate([this.collection], {
-      queryParams: queryParams,
-    });
+    this.router.navigate([this.collection]);
   }
 }
