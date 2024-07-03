@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { MovieCardComponent } from '../../components/movie-card/movie-card.component';
-import { IMovie } from '../../models/movie.model';
 import { RouterOutlet } from '@angular/router';
 import { BaseMoviesComponent } from '../../general/base-movies.component';
 import { SubHeaderComponent } from '../../components/sub-header/sub-header.component';

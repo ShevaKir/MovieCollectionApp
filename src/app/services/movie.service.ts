@@ -1,11 +1,5 @@
 import { Injectable } from '@angular/core';
 import { IMovie } from '../models/movie.model';
-import {
-  nowPlayingMovies,
-  popularMovies,
-  topRatedMovies,
-  upcomingMovies,
-} from '../mock-data/mock-data';
 import { MovieCollection } from '../enums/MovieCollection';
 import { Movies } from '../models/Movies';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -19,12 +13,6 @@ import { IMovieResponse } from '../models/movie-response.model';
 export class MovieService {
   private _apiUrl: string = environment.apiUrl;
   private _accessToken: string = environment.accessToken;
-  private _movies: { [key: string]: Movies } = {
-    [MovieCollection.NowPlaying]: new Movies(nowPlayingMovies),
-    [MovieCollection.Popular]: new Movies(popularMovies),
-    [MovieCollection.TopRated]: new Movies(topRatedMovies),
-    [MovieCollection.Upcoming]: new Movies(upcomingMovies),
-  };
 
   constructor(private http: HttpClient) {}
 
@@ -33,32 +21,34 @@ export class MovieService {
       accept: 'application/json',
       Authorization: `Bearer ${this._accessToken}`,
     });
-    return this.http.get<IMovieResponse>(`${this._apiUrl}/${collection}`, { headers });
+    return this.http.get<IMovieResponse>(`${this._apiUrl}/${collection}`, {
+      headers,
+    });
   }
 
   public getMovieById(id: number, collection: MovieCollection): IMovie {
-    return this._movies[collection].getMovieById(id);
+    throw new Error();
   }
 
   public getFavourites(collection: MovieCollection): ReadonlyArray<IMovie> {
-    return this._movies[collection].getFavouriteList();
+    throw new Error();
   }
   public getWatchLaters(collection: MovieCollection): ReadonlyArray<IMovie> {
-    return this._movies[collection].getWatchLaterList();
+    throw new Error();
   }
 
   public addMovieToFavourite(movie: IMovie, collection: MovieCollection) {
-    this._movies[collection].addFavourite(movie);
+    throw new Error();
   }
   public addMovieToWatchLater(movie: IMovie, collection: MovieCollection) {
-    this._movies[collection].addWatchLater(movie);
+    throw new Error();
   }
 
   public removeMovieFromFavourite(movie: IMovie, collection: MovieCollection) {
-    this._movies[collection].removeFavourite(movie);
+    throw new Error();
   }
 
   public removeMovieFromWatchLater(movie: IMovie, collection: MovieCollection) {
-    this._movies[collection].removeWatchLater(movie);
+    throw new Error();
   }
 }
