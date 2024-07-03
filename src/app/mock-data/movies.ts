@@ -1,4 +1,4 @@
-import { IMovieCard } from "../models/IMovieCard";
+import { IMovieCard } from "../models/movie.model";
 
 export const MOVIES : IMovieCard[] = 
 [

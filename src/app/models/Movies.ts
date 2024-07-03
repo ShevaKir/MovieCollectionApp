@@ -1,4 +1,4 @@
-import { IMovie } from './IMovieCard';
+import { IMovie } from './movie.model';
 
 export class Movies {
   private _movies: IMovie[] = [];

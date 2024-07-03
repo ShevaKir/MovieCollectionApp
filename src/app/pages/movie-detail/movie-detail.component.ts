@@ -4,7 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
-import { IMovie } from '../../models/IMovieCard';
+import { IMovie } from '../../models/movie.model';
 import { UpperCasePipe } from '@angular/common';
 import { MovieService } from '../../services/movie.service';
 import { MovieCollection } from '../../enums/MovieCollection';

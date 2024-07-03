@@ -1,7 +1,7 @@
 export enum MovieCollection {
   None,
-  NowPlaying = 'now-playing',
+  NowPlaying = 'now_playing',
   Popular = 'popular',
-  TopRated = 'top-rated',
+  TopRated = 'top_rated',
   Upcoming = 'upcoming',
 }

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IMovie } from '../models/IMovieCard';
+import { IMovie } from '../models/movie.model';
 import { Router } from '@angular/router';
 import { MovieCollection } from '../enums/MovieCollection';
 import { MovieService } from '../services/movie.service';
@@ -12,7 +12,14 @@ export abstract class BaseMoviesComponent {
   abstract movieCollection: MovieCollection;
   public subMovieList: ReadonlyArray<IMovie> = [];
   public selectedSubMovieList: SelectMovieList = SelectMovieList.Empty;
+  public movies!: ReadonlyArray<IMovie>;
   constructor(private router: Router, protected movieService: MovieService) {}
+
+  ngOnInit(): void {
+    this.movieService.getMovieList(this.movieCollection).subscribe((movies) => {
+      this.movies = movies.results;
+    });
+  }
 
   addMovieToFavourite(movie: IMovie) {
     this.movieService.addMovieToFavourite(movie, this.movieCollection);
