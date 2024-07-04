@@ -1,5 +1,6 @@
 <mat-toolbar>
-  <button
+  <div class="actions">
+    <button
     mat-button
     (click)="selectTab(SelectMovieList.Favourite)"
     [ngClass]="{ 'active-tab': currentTab === SelectMovieList.Favourite }"
@@ -13,4 +14,6 @@
   >
     Watch later
   </button>
+  </div>
+
 </mat-toolbar>

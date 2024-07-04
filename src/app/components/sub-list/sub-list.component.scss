@@ -1,9 +1,9 @@
 .list {
-  width: 240px;
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
   &__title {
+    margin: 10px;
     font-size: 16px;
   }
   &__item {

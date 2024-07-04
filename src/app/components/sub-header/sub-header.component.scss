@@ -1,4 +1,8 @@
 .active-tab {
-    background-color: #e0e0e0; 
-    color: #1976d2; 
-  }
+  background-color: #e0e0e0;
+  color: #1976d2;
+}
+.actions {
+  display: flex;
+  gap: 6px;
+}
