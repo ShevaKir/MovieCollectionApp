@@ -13,28 +13,19 @@ import { IMovieDetails } from '../models/movie-details.model';
 })
 export class MovieService {
   private _apiUrl: string = environment.apiUrl;
-  private _accessToken: string = environment.accessToken;
 
   constructor(private http: HttpClient) {}
 
   public getMovieList(collection: MovieCollection): Observable<IMovieResponse> {
-    const headers = new HttpHeaders({
-      accept: 'application/json',
-      Authorization: `Bearer ${this._accessToken}`,
-    });
-    return this.http.get<IMovieResponse>(`${this._apiUrl}/${collection}`, {
-      headers,
-    });
+    return this.http.get<IMovieResponse>(
+      `${this._apiUrl}/${collection}?api_key=${environment.apiKey}&page=1`
+    );
   }
 
   public getMovieById(id: number): Observable<IMovieDetails> {
-    const headers = new HttpHeaders({
-      accept: 'application/json',
-      Authorization: `Bearer ${this._accessToken}`,
-    });
-    return this.http.get<IMovieDetails>(`${this._apiUrl}/${id}`, {
-      headers,
-    });
+    return this.http.get<IMovieDetails>(
+      `${this._apiUrl}/${id}?api_key=${environment.apiKey}`
+    );
   }
 
   public getFavourites(collection: MovieCollection): ReadonlyArray<IMovie> {
