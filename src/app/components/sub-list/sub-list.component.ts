@@ -14,7 +14,7 @@ import { MatButtonModule } from '@angular/material/button';
   styleUrl: './sub-list.component.scss',
 })
 export class SubListComponent {
-  @Input() titleEmpty: string = '';
+  @Input() title: string = '';
   @Input() movies!: ReadonlyArray<IMovie>;
 
   @Output() removeMovie = new EventEmitter<number>();

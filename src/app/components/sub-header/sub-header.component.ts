@@ -15,7 +15,7 @@ import { CommonModule } from '@angular/common';
 export class SubHeaderComponent {
   @Output() selectedTab = new EventEmitter<SelectMovieList>();
   SelectMovieList = SelectMovieList;
-  currentTab: SelectMovieList = SelectMovieList.Empty;
+  currentTab: SelectMovieList = SelectMovieList.Favourite;
 
   constructor() {}
 

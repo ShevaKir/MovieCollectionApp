@@ -9,19 +9,23 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-.movie-list {
-  padding-top: 20px;
-  padding-bottom: 20px;
+.movies {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
   gap: 16px;
+  &__movie-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 16px;
 
-  app-movie-card {
-    flex: 1;
+    app-movie-card {
+      flex: 1;
+    }
   }
-}
-
-.content {
-  display: flex;
+  &__sub-list {
+    position: sticky;
+    top: 20px;
+    align-self: flex-start;
+    flex: 0 0 300px;
+  }
 }

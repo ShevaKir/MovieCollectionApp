@@ -11,11 +11,13 @@ import { SelectMovieList } from '../enums/select-movie-list';
 export abstract class BaseMoviesComponent {
   abstract movieCollection: MovieCollection;
   public subMovieList: ReadonlyArray<IMovie> = [];
-  public selectedSubMovieList: SelectMovieList = SelectMovieList.Empty;
+  public selectedSubMovieList: SelectMovieList = SelectMovieList.Favourite;
   public movies!: ReadonlyArray<IMovie>;
+  public titleSubList: string = '';
   constructor(private router: Router, protected movieService: MovieService) {}
 
   ngOnInit(): void {
+    this.updateSubMovieList();
     this.movieService.getMovieList(this.movieCollection).subscribe((movies) => {
       this.movies = movies.results;
     });
@@ -52,13 +54,12 @@ export abstract class BaseMoviesComponent {
 
   private updateSubMovieList() {
     switch (this.selectedSubMovieList) {
-      case SelectMovieList.Empty:
-        this.subMovieList = [];
-        break;
       case SelectMovieList.Favourite:
+        this.titleSubList = 'List of favourite movies';
         this.subMovieList = this.movieService.getFavourites();
         break;
       case SelectMovieList.WatchLater:
+        this.titleSubList = 'List of watch later movies';
         this.subMovieList = this.movieService.getWatchLaters();
         break;
     }
