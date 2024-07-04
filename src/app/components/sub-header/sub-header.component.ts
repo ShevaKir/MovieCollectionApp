@@ -2,7 +2,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterLink } from '@angular/router';
-import { SelectMovieList } from '../../enums/SelectMovieList';
+import { SelectMovieList } from '../../enums/select-movie-list';
 import { CommonModule } from '@angular/common';
 
 @Component({

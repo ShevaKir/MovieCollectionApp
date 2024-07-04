@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { IMovie } from '../models/movie.model';
 import { Router } from '@angular/router';
-import { MovieCollection } from '../enums/MovieCollection';
+import { MovieCollection } from '../enums/movie-collection';
 import { MovieService } from '../services/movie.service';
-import { SelectMovieList } from '../enums/SelectMovieList';
+import { SelectMovieList } from '../enums/select-movie-list';
 
 @Component({
   template: '',
@@ -22,12 +22,12 @@ export abstract class BaseMoviesComponent {
   }
 
   addMovieToFavourite(movie: IMovie) {
-    this.movieService.addMovieToFavourite(movie, this.movieCollection);
+    this.movieService.addMovieToFavourite(movie);
     this.updateSubMovieList();
   }
 
   addMovieToWatchLater(movie: IMovie) {
-    this.movieService.addMovieToWatchLater(movie, this.movieCollection);
+    this.movieService.addMovieToWatchLater(movie);
     this.updateSubMovieList();
   }
 
@@ -35,13 +35,10 @@ export abstract class BaseMoviesComponent {
     const movie: IMovie = this.subMovieList.find((m) => m.id === id) as IMovie;
     switch (this.selectedSubMovieList) {
       case SelectMovieList.Favourite:
-        this.movieService.removeMovieFromFavourite(movie, this.movieCollection);
+        this.movieService.removeMovieFromFavourite(movie);
         break;
       case SelectMovieList.WatchLater:
-        this.movieService.removeMovieFromWatchLater(
-          movie,
-          this.movieCollection
-        );
+        this.movieService.removeMovieFromWatchLater(movie);
         break;
     }
     this.updateSubMovieList();
@@ -59,14 +56,10 @@ export abstract class BaseMoviesComponent {
         this.subMovieList = [];
         break;
       case SelectMovieList.Favourite:
-        this.subMovieList = this.movieService.getFavourites(
-          this.movieCollection
-        );
+        this.subMovieList = this.movieService.getFavourites();
         break;
       case SelectMovieList.WatchLater:
-        this.subMovieList = this.movieService.getWatchLaters(
-          this.movieCollection
-        );
+        this.subMovieList = this.movieService.getWatchLaters();
         break;
     }
   }
