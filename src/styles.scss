@@ -1,6 +1,5 @@
 @import "assets/styles/reset.scss";
 @import "assets/styles/material-override.scss";
-@import "assets/styles/container.scss";
 html,
 body {
   height: 100%;
@@ -15,8 +14,12 @@ body {
   padding-bottom: 20px;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-between;
   gap: 16px;
+
+  app-movie-card {
+    flex: 1;
+  }
 }
 
 .content {
