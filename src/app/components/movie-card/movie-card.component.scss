@@ -1,6 +1,5 @@
 .card {
   cursor: pointer;
-  max-width: 320px;
   height: 100%;
   &__header {
     display: flex;
@@ -26,6 +25,10 @@
   &__actions {
     flex: 1;
     align-items: flex-end;
+    justify-content: flex-end;
+    &__button {
+
+    }
   }
 }
 

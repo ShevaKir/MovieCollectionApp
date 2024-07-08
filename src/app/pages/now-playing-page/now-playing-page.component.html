@@ -1,19 +1,22 @@
 <div class="movies">
-  <app-sub-header (selectedTab)="selectedMovieList($event)"></app-sub-header>
-  <div class="content">
-    <div class="movie-list">
-      @for (movie of movies; track movie) {
-      <app-movie-card
-        [movie]="movie"
-        (addFavourite)="addMovieToFavourite($event)"
-        (addWatchList)="addMovieToWatchLater($event)"
-        (viewDetail)="navigateToDetail($event)"
-      >
-      </app-movie-card>
-      }
-    </div>
-    @if(subMovieList.length) {
-    <app-sub-list [movies]="subMovieList" (removeMovie)="removeMovie($event)"></app-sub-list>
+  <div class="movies__movie-list">
+    @for (movie of movies; track movie) {
+    <app-movie-card
+      [movie]="movie"
+      (addFavourite)="addMovieToFavourite($event)"
+      (addWatchList)="addMovieToWatchLater($event)"
+      (viewDetail)="navigateToDetail($event)"
+    >
+    </app-movie-card>
     }
+  </div>
+  <div class="movies__sub-list">
+    <app-sub-header (selectedTab)="selectedMovieList($event)"></app-sub-header>
+
+    <app-sub-list
+      [title]="titleSubList"
+      [movies]="subMovieList"
+      (removeMovie)="removeMovie($event)"
+    ></app-sub-list>
   </div>
 </div>

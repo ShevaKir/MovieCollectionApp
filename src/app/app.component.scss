@@ -6,16 +6,16 @@
   margin-bottom: 20px;
 }
 
-.example-container {
-  height: 100%;
+.app-container {
+  height: calc(100vh - 64px);
   border: 1px solid rgba(0, 0, 0, 0.5);
-}
-.example-sidenav {
-  width: 200px;
-}
-.sidenav-content {
-  padding: 50px;
-  display: flex;
+  &__sidenav {
+    width: 200px;
+  }
+  &__main {
+    padding: 40px;
+    display: flex;
+  }
 }
 
 @media (max-width: 899px) {

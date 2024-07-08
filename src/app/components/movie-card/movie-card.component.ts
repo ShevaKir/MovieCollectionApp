@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { IMovie } from '../../models/IMovieCard';
+import { IMovie } from '../../models/movie.model';
 import { DurationPipe } from '../../pipes/duration/duration.pipe';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';

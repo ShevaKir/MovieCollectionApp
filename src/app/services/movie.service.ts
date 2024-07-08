@@ -1,63 +1,57 @@
 import { Injectable } from '@angular/core';
-import { IMovie } from '../models/IMovieCard';
-import {
-  nowPlayingMovies,
-  popularMovies,
-  topRatedMovies,
-  upcomingMovies,
-} from '../mock-data/mock-data';
-import { MovieCollection } from '../enums/MovieCollection';
-import { Movies } from '../models/Movies';
+import { IMovie } from '../models/movie.model';
+import { MovieCollection } from '../enums/movie-collection';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
+import { IMovieResponse } from '../models/movie-response.model';
+import { IMovieDetails } from '../models/movie-details.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class MovieService {
-  private _movies: { [key: string]: Movies } = {
-    [MovieCollection.NowPlaying]: new Movies(nowPlayingMovies),
-    [MovieCollection.Popular]: new Movies(popularMovies),
-    [MovieCollection.TopRated]: new Movies(topRatedMovies),
-    [MovieCollection.Upcoming]: new Movies(upcomingMovies),
-  };
+  private _apiUrl: string = environment.apiUrl;
+  private _favourite: Set<IMovie> = new Set();
+  private _watchLater: Set<IMovie> = new Set();
 
-  constructor() {}
+  constructor(private http: HttpClient) {}
 
-  public getNowPlayingMovies(): ReadonlyArray<IMovie> {
-    return this._movies[MovieCollection.NowPlaying].getMovieList();
-  }
-  public getPopularMovies(): ReadonlyArray<IMovie> {
-    return this._movies[MovieCollection.Popular].getMovieList();
-  }
-  public getTopRatedMovies(): ReadonlyArray<IMovie> {
-    return this._movies[MovieCollection.TopRated].getMovieList();
-  }
-  public getUpcomingMovies(): ReadonlyArray<IMovie> {
-    return this._movies[MovieCollection.Upcoming].getMovieList();
+  public getMovieList(collection: MovieCollection): Observable<IMovieResponse> {
+    return this.http.get<IMovieResponse>(
+      `${this._apiUrl}/${collection}?api_key=${environment.apiKey}&page=1`
+    );
   }
 
-  public getMovieById(id: number, collection: MovieCollection): IMovie {
-    return this._movies[collection].getMovieById(id);
+  public getMovieById(id: number): Observable<IMovieDetails> {
+    return this.http.get<IMovieDetails>(
+      `${this._apiUrl}/${id}?api_key=${environment.apiKey}`
+    );
   }
 
-  public getFavourites(collection: MovieCollection): ReadonlyArray<IMovie> {
-    return this._movies[collection].getFavouriteList();
+  public getFavourites(): ReadonlyArray<IMovie> {
+    return Array.from(this._favourite);
   }
-  public getWatchLaters(collection: MovieCollection): ReadonlyArray<IMovie> {
-    return this._movies[collection].getWatchLaterList();
-  }
-
-  public addMovieToFavourite(movie: IMovie, collection: MovieCollection) {
-    this._movies[collection].addFavourite(movie);
-  }
-  public addMovieToWatchLater(movie: IMovie, collection: MovieCollection) {
-    this._movies[collection].addWatchLater(movie);
+  public getWatchLaters(): ReadonlyArray<IMovie> {
+    return Array.from(this._watchLater);
   }
 
-  public removeMovieFromFavourite(movie: IMovie, collection: MovieCollection) {
-    this._movies[collection].removeFavourite(movie);
+  public addMovieToFavourite(movie: IMovie) {
+    this._favourite.add(movie);
+  }
+  public addMovieToWatchLater(movie: IMovie) {
+    this._watchLater.add(movie);
   }
 
-  public removeMovieFromWatchLater(movie: IMovie, collection: MovieCollection) {
-    this._movies[collection].removeWatchLater(movie);
+  public removeMovieFromFavourite(movie: IMovie) {
+    this._favourite.delete(movie);
   }
+
+  public removeMovieFromWatchLater(movie: IMovie) {
+    this._watchLater.delete(movie);
+  }
+}
+
+export interface IMovieId {
+  id: number;
 }

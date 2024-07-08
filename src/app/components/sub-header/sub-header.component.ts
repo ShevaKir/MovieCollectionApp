@@ -2,7 +2,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterLink } from '@angular/router';
-import { SelectMovieList } from '../../enums/SelectMovieList';
+import { SelectMovieList } from '../../enums/select-movie-list';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -15,7 +15,7 @@ import { CommonModule } from '@angular/common';
 export class SubHeaderComponent {
   @Output() selectedTab = new EventEmitter<SelectMovieList>();
   SelectMovieList = SelectMovieList;
-  currentTab: SelectMovieList = SelectMovieList.Empty;
+  currentTab: SelectMovieList = SelectMovieList.Favourite;
 
   constructor() {}
 

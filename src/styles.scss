@@ -1,6 +1,5 @@
 @import "assets/styles/reset.scss";
 @import "assets/styles/material-override.scss";
-@import "assets/styles/container.scss";
 html,
 body {
   height: 100%;
@@ -10,15 +9,23 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-.movie-list {
-  padding-top: 20px;
-  padding-bottom: 20px;
+.movies {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
   gap: 16px;
-}
+  &__movie-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 16px;
 
-.content {
-  display: flex;
+    app-movie-card {
+      flex: 1;
+    }
+  }
+  &__sub-list {
+    position: sticky;
+    top: 20px;
+    align-self: flex-start;
+    flex: 0 0 240px;
+  }
 }

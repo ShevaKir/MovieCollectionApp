@@ -1,10 +1,10 @@
 <app-header (toggleMenu)="toggleSidebar($event)"></app-header>
-<mat-drawer-container class="example-container" autosize>
-  <mat-drawer #drawer class="example-sidenav" mode="side" [opened]="isViewMenu">
+<mat-drawer-container class="app-container" autosize>
+  <mat-drawer #drawer class="app-container__sidenav" mode="side" [opened]="isViewMenu">
     <app-menu-sidebar class="side-bar"></app-menu-sidebar>
   </mat-drawer>
 
-  <div class="sidenav-content">
+  <main class="app-container__main">
     <router-outlet></router-outlet>
-  </div>
+  </main>
 </mat-drawer-container>
