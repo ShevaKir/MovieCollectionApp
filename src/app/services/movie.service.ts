@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { IMovie } from '../models/movie.model';
 import { MovieCollection } from '../enums/movie-collection';
 import { HttpClient } from '@angular/common/http';
-import { Observable, Subject } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { IMovieResponse } from '../models/movie-response.model';
 import { IMovieDetails } from '../models/movie-details.model';
@@ -14,8 +14,8 @@ export class MovieService {
   private _apiUrl: string = environment.apiUrl;
   private _favourite: Set<IMovie> = new Set();
   private _watchLater: Set<IMovie> = new Set();
-  private _favouriteSubject: Subject<IMovie[]> = new Subject<IMovie[]>();
-  private _watchLaterSubject: Subject<IMovie[]> = new Subject<IMovie[]>();
+  private _favouriteSubject: BehaviorSubject<IMovie[]> = new BehaviorSubject<IMovie[]>([]);
+  private _watchLaterSubject: BehaviorSubject<IMovie[]> = new BehaviorSubject<IMovie[]>([]);
 
 
   constructor(private http: HttpClient) {}
