@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -8,6 +8,7 @@ import { UpperCasePipe } from '@angular/common';
 import { MovieService } from '../../services/movie.service';
 import { IMovieDetails } from '../../models/movie-details.model';
 import { NavigationService } from '../../services/navigation.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-movie-detail',
@@ -18,15 +19,18 @@ import { NavigationService } from '../../services/navigation.service';
     MatListModule,
     MatIconModule,
     UpperCasePipe,
-    RouterLink
+    RouterLink,
   ],
   templateUrl: './movie-detail.component.html',
   styleUrl: './movie-detail.component.scss',
 })
-export class MovieDetailComponent implements OnInit {
+export class MovieDetailComponent implements OnInit, OnDestroy {
   movie!: IMovieDetails;
   favourite: number = 0;
   watchLater: number = 0;
+  backPath: string = '';
+
+  private subscriptions: Subscription = new Subscription();
 
   constructor(
     private router: Router,
@@ -38,9 +42,18 @@ export class MovieDetailComponent implements OnInit {
   ngOnInit(): void {
     const id: number = +this.route.snapshot.params['id'];
 
-    this.movieService.getMovieById(id).subscribe((movie) => {
+    const movieSub = this.movieService.getMovieById(id).subscribe((movie) => {
       this.movie = movie;
     });
+
+    const navigationSub = this.navigationService
+      .getPreviousPath()
+      .subscribe((path) => {
+        this.backPath = path;
+      });
+
+    this.subscriptions.add(movieSub);
+    this.subscriptions.add(navigationSub);
   }
 
   addFavourite() {
@@ -52,7 +65,10 @@ export class MovieDetailComponent implements OnInit {
   }
 
   navigateBack() {
-    const pathToBack = this.navigationService.getPreviousUrl();
-    this.router.navigate([pathToBack]);
+    this.router.navigate([this.backPath]);
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
   }
 }

@@ -1,26 +1,29 @@
 import { Injectable } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
-import { filter } from 'rxjs';
+import { Router, RoutesRecognized } from '@angular/router';
+import { BehaviorSubject, Observable, filter, pairwise } from 'rxjs';
+import { Location } from '@angular/common';
 
 @Injectable({
   providedIn: 'root',
 })
 export class NavigationService {
-  private previousUrl: string = '';
-  private currentUrl: string = '';
+  private previousRoutePath = new BehaviorSubject<string>('');
 
-  constructor(private router: Router) {
-    this.currentUrl = this.router.url;
+  constructor(private router: Router, private location: Location) {
+    this.previousRoutePath.next(this.location.path());
 
-    router.events
-      .pipe(filter((event: any) => event instanceof NavigationEnd))
-      .subscribe((event: NavigationEnd) => {
-        this.previousUrl = this.currentUrl;
-        this.currentUrl = event.url;
+    this.router.events
+      .pipe(
+        filter((e) => e instanceof RoutesRecognized),
+        pairwise()
+      )
+      .subscribe((event: any[]) => {
+        console.log(event[0].urlAfterRedirects);
+        this.previousRoutePath.next(event[0].urlAfterRedirects);
       });
   }
 
-  public getPreviousUrl(): string {
-    return this.previousUrl;
+  getPreviousPath(): Observable<string> {
+    return this.previousRoutePath;
   }
 }

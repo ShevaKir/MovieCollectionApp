@@ -5,11 +5,12 @@ import { MovieCollection } from '../enums/movie-collection';
 import { MovieService } from '../services/movie.service';
 import { SelectMovieList } from '../enums/select-movie-list';
 import { Observable, Subscription } from 'rxjs';
+import { NavigationService } from '../services/navigation.service';
 
 @Component({
   template: '',
 })
-export abstract class BaseMoviesComponent implements OnInit, OnDestroy{
+export abstract class BaseMoviesComponent implements OnInit, OnDestroy {
   abstract movieCollection: MovieCollection;
   public favouriteList: ReadonlyArray<IMovie> = [];
   public watchLaterList: ReadonlyArray<IMovie> = [];
@@ -20,20 +21,30 @@ export abstract class BaseMoviesComponent implements OnInit, OnDestroy{
 
   private subscriptions: Subscription = new Subscription();
 
-  constructor(private router: Router, protected movieService: MovieService) {}
+  constructor(
+    private router: Router,
+    protected movieService: MovieService,
+    private navigationService: NavigationService
+  ) {}
 
   ngOnInit(): void {
-    const movieListSub = this.movieService.getMovieList(this.movieCollection).subscribe((movies) => {
-      this.movies = movies.results;
-    });
+    const movieListSub = this.movieService
+      .getMovieList(this.movieCollection)
+      .subscribe((movies) => {
+        this.movies = movies.results;
+      });
 
-    const favouriteListSub = this.movieService.getFavourites().subscribe((movies) => {
-      this.favouriteList = movies;
-    })
+    const favouriteListSub = this.movieService
+      .getFavourites()
+      .subscribe((movies) => {
+        this.favouriteList = movies;
+      });
 
-    const watchLaterSub = this.movieService.getWatchLaters().subscribe((movies) => {
-      this.watchLaterList = movies;
-    })
+    const watchLaterSub = this.movieService
+      .getWatchLaters()
+      .subscribe((movies) => {
+        this.watchLaterList = movies;
+      });
 
     this.subscriptions.add(movieListSub);
     this.subscriptions.add(favouriteListSub);
@@ -54,7 +65,9 @@ export abstract class BaseMoviesComponent implements OnInit, OnDestroy{
   }
 
   removeMovieFromWatchLaterList(id: number) {
-    const movie: IMovie = this.watchLaterList.find((m) => m.id === id) as IMovie;
+    const movie: IMovie = this.watchLaterList.find(
+      (m) => m.id === id
+    ) as IMovie;
     this.movieService.removeMovieFromWatchLater(movie);
   }
 
