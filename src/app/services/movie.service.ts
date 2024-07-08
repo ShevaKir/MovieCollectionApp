@@ -58,7 +58,3 @@ export class MovieService {
     this._watchLaterSubject.next(Array.from(this._watchLater))
   }
 }
-
-export interface IMovieId {
-  id: number;
-}
