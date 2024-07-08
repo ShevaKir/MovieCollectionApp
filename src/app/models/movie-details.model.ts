@@ -1,33 +1,33 @@
 import { IMovie } from './movie.model';
 
 export interface IMovieDetails extends IMovie {
-  belongs_to_collection: Belongstocollection;
+  belongs_to_collection: BelongstoCollection;
   budget: number;
   genres: Genre[];
   homepage: string;
   imdb_id: string;
   origin_country: string[];
-  production_companies: Productioncompany[];
-  production_countries: Productioncountry[];
+  production_companies: ProductionCompany[];
+  production_countries: ProductionCountry[];
   revenue: number;
   runtime: number;
-  spoken_languages: Spokenlanguage[];
+  spoken_languages: SpokenLanguage[];
   status: string;
   tagline: string;
 }
 
-interface Spokenlanguage {
+interface SpokenLanguage {
   english_name: string;
   iso_639_1: string;
   name: string;
 }
 
-interface Productioncountry {
+interface ProductionCountry {
   iso_3166_1: string;
   name: string;
 }
 
-interface Productioncompany {
+interface ProductionCompany {
   id: number;
   logo_path: string;
   name: string;
@@ -39,7 +39,7 @@ interface Genre {
   name: string;
 }
 
-interface Belongstocollection {
+interface BelongstoCollection {
   id: number;
   name: string;
   poster_path: string;
