@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { IMovie } from '../models/movie.model';
 import { MovieCollection } from '../enums/movie-collection';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { IMovieResponse } from '../models/movie-response.model';
 import { IMovieDetails } from '../models/movie-details.model';
@@ -14,6 +14,9 @@ export class MovieService {
   private _apiUrl: string = environment.apiUrl;
   private _favourite: Set<IMovie> = new Set();
   private _watchLater: Set<IMovie> = new Set();
+  private _favouriteSubject: Subject<IMovie[]> = new Subject<IMovie[]>();
+  private _watchLaterSubject: Subject<IMovie[]> = new Subject<IMovie[]>();
+
 
   constructor(private http: HttpClient) {}
 
@@ -29,26 +32,30 @@ export class MovieService {
     );
   }
 
-  public getFavourites(): ReadonlyArray<IMovie> {
-    return Array.from(this._favourite);
+  public getFavourites(): Observable<IMovie[]> {
+    return this._favouriteSubject;
   }
-  public getWatchLaters(): ReadonlyArray<IMovie> {
-    return Array.from(this._watchLater);
+  public getWatchLaters(): Observable<IMovie[]> {
+    return this._watchLaterSubject;
   }
 
   public addMovieToFavourite(movie: IMovie) {
     this._favourite.add(movie);
+    this._favouriteSubject.next(Array.from(this._favourite));
   }
   public addMovieToWatchLater(movie: IMovie) {
     this._watchLater.add(movie);
+    this._watchLaterSubject.next(Array.from(this._watchLater))
   }
 
   public removeMovieFromFavourite(movie: IMovie) {
     this._favourite.delete(movie);
+    this._favouriteSubject.next(Array.from(this._favourite));
   }
 
   public removeMovieFromWatchLater(movie: IMovie) {
     this._watchLater.delete(movie);
+    this._watchLaterSubject.next(Array.from(this._watchLater))
   }
 }
 

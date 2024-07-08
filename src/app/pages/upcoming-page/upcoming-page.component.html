@@ -12,11 +12,18 @@
   </div>
   <div class="movies__sub-list">
     <app-sub-header (selectedTab)="selectedMovieList($event)"></app-sub-header>
-
+    @if (selectedSubMovieList == selectMovieList.Favourite) {
     <app-sub-list
-      [title]="titleSubList"
-      [movies]="subMovieList"
-      (removeMovie)="removeMovie($event)"
+      [title]="'List of Favourite'"
+      [movies]="favouriteList"
+      (removeMovie)="removeMovieFromFavouriteList($event)"
     ></app-sub-list>
+    } @else {
+    <app-sub-list
+      [title]="'List of Watch Later'"
+      [movies]="watchLaterList"
+      (removeMovie)="removeMovieFromWatchLaterList($event)"
+    ></app-sub-list>
+    }
   </div>
 </div>
