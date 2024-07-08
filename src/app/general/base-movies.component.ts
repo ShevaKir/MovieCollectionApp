@@ -1,14 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, OnChanges, OnDestroy, OnInit } from '@angular/core';
 import { IMovie } from '../models/movie.model';
 import { Router } from '@angular/router';
 import { MovieCollection } from '../enums/movie-collection';
 import { MovieService } from '../services/movie.service';
 import { SelectMovieList } from '../enums/select-movie-list';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   template: '',
 })
-export abstract class BaseMoviesComponent {
+export abstract class BaseMoviesComponent implements OnInit, OnDestroy{
   abstract movieCollection: MovieCollection;
   public favouriteList: ReadonlyArray<IMovie> = [];
   public watchLaterList: ReadonlyArray<IMovie> = [];
@@ -16,20 +17,27 @@ export abstract class BaseMoviesComponent {
   public movies!: ReadonlyArray<IMovie>;
   public titleSubList: string = '';
   public selectMovieList = SelectMovieList;
+
+  private subscriptions: Subscription = new Subscription();
+
   constructor(private router: Router, protected movieService: MovieService) {}
 
   ngOnInit(): void {
-    this.movieService.getMovieList(this.movieCollection).subscribe((movies) => {
+    const movieListSub = this.movieService.getMovieList(this.movieCollection).subscribe((movies) => {
       this.movies = movies.results;
     });
 
-    this.movieService.getFavourites().subscribe((movies) => {
+    const favouriteListSub = this.movieService.getFavourites().subscribe((movies) => {
       this.favouriteList = movies;
     })
 
-    this.movieService.getWatchLaters().subscribe((movies) => {
+    const watchLaterSub = this.movieService.getWatchLaters().subscribe((movies) => {
       this.watchLaterList = movies;
     })
+
+    this.subscriptions.add(movieListSub);
+    this.subscriptions.add(favouriteListSub);
+    this.subscriptions.add(watchLaterSub);
   }
 
   addMovieToFavourite(movie: IMovie) {
@@ -58,5 +66,9 @@ export abstract class BaseMoviesComponent {
 
   selectedMovieList(selectedTab: SelectMovieList) {
     this.selectedSubMovieList = selectedTab;
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
   }
 }
