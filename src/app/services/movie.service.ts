@@ -22,13 +22,13 @@ export class MovieService {
 
   public getMovieList(collection: MovieCollection): Observable<IMovieResponse> {
     return this.http.get<IMovieResponse>(
-      `${this._apiUrl}/${collection}?api_key=${environment.apiKey}&page=1`
+      `${this._apiUrl}/movie/${collection}?api_key=${environment.apiKey}&page=1`
     );
   }
 
   public getMovieById(id: number): Observable<IMovieDetails> {
     return this.http.get<IMovieDetails>(
-      `${this._apiUrl}/${id}?api_key=${environment.apiKey}`
+      `${this._apiUrl}/movie/${id}?api_key=${environment.apiKey}`
     );
   }
 
