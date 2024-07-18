@@ -8,6 +8,8 @@ import { provideHttpClient } from '@angular/common/http';
 import { provideStore } from '@ngrx/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { provideEffects } from '@ngrx/effects';
+import { MovieEffects } from './store/effects';
+import { MovieReducer } from './store/reducers';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -15,8 +17,8 @@ export const appConfig: ApplicationConfig = {
     provideClientHydration(),
     provideAnimationsAsync(),
     provideHttpClient(),
-    provideStore(),
+    provideStore({movieState: MovieReducer}),
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
-    provideEffects()
+    provideEffects([MovieEffects])
 ],
 };
