@@ -16,5 +16,17 @@ export const MovieReducer = createReducer(
       movies: null,
       error: error,
     };
+  }),
+  on(MovieActions.addMovieToFavorite, (state, { id }) => {
+    return {
+      ...state,
+      favoriteMovies: [...state.favoriteMovies, id],
+    };
+  }),
+  on(MovieActions.removeMovieFromFavorite, (state, { id }) => {
+    return {
+      ...state,
+      favoriteMovies: state.favoriteMovies.filter((movieId) => movieId !== id),
+    };
   })
 );
