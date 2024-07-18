@@ -1,6 +1,6 @@
 <div class="movies">
   <div class="movies__movie-list">
-    @for (movie of movies; track movie) {
+    @for (movie of selectedMovies$ | async; track movie) {
     <app-movie-card
       [movie]="movie"
       (addFavourite)="addMovieToFavourite($event)"

@@ -4,8 +4,10 @@ import { Router } from '@angular/router';
 import { MovieCollection } from '../enums/movie-collection';
 import { MovieService } from '../services/movie.service';
 import { SelectMovieList } from '../enums/select-movie-list';
-import { Observable, Subscription } from 'rxjs';
-import { NavigationService } from '../services/navigation.service';
+import { Subscription } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { loadMovies } from '../store/actions';
+import { selectMovies } from '../store/selectors';
 
 @Component({
   template: '',
@@ -18,21 +20,19 @@ export abstract class BaseMoviesComponent implements OnInit, OnDestroy {
   public movies!: ReadonlyArray<IMovie>;
   public titleSubList: string = '';
   public selectMovieList = SelectMovieList;
+  public selectedMovies$ = this.store.select(selectMovies);
 
   private subscriptions: Subscription = new Subscription();
 
   constructor(
     private router: Router,
     protected movieService: MovieService,
-    private navigationService: NavigationService
+    private store: Store
   ) {}
 
   ngOnInit(): void {
-    const movieListSub = this.movieService
-      .getMovieList(this.movieCollection)
-      .subscribe((movies) => {
-        this.movies = movies.results;
-      });
+    console.log("Start: ", this.movieCollection );
+    this.store.dispatch(loadMovies({category: this.movieCollection}))
 
     const favouriteListSub = this.movieService
       .getFavourites()
@@ -46,7 +46,6 @@ export abstract class BaseMoviesComponent implements OnInit, OnDestroy {
         this.watchLaterList = movies;
       });
 
-    this.subscriptions.add(movieListSub);
     this.subscriptions.add(favouriteListSub);
     this.subscriptions.add(watchLaterSub);
   }
