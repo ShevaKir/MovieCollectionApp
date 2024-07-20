@@ -15,13 +15,13 @@
     @if (selectedSubMovieList == selectMovieList.Favourite) {
     <app-sub-list
       [title]="'List of Favourite'"
-      [movies]="favouriteList"
+      [movies]="selectedFavoriteMovies$ | async"
       (removeMovie)="removeMovieFromFavouriteList($event)"
     ></app-sub-list>
     } @else {
     <app-sub-list
       [title]="'List of Watch Later'"
-      [movies]="watchLaterList"
+      [movies]="selectedWatchLaterMovies$ | async"
       (removeMovie)="removeMovieFromWatchLaterList($event)"
     ></app-sub-list>
     }
