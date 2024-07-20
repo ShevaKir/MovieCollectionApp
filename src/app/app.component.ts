@@ -4,6 +4,7 @@ import { MenuSidebarComponent } from './components/menu-sidebar/menu-sidebar.com
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { HeaderComponent } from './components/header/header.component';
 import { AuthService } from './services/auth.service';
+import { NavigationService } from './services/navigation.service';
 
 @Component({
   selector: 'app-root',
@@ -19,7 +20,7 @@ import { AuthService } from './services/auth.service';
 })
 export class AppComponent {
 
-  constructor(private authServise: AuthService) {
+  constructor(private authServise: AuthService, private navigationService: NavigationService) {
   }
 
   isViewMenu: boolean = true;
