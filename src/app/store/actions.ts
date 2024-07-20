@@ -1,6 +1,7 @@
 import { createAction, props } from '@ngrx/store';
 import { IMovie } from '../models/movie.model';
 import { MovieCollection } from '../enums/movie-collection';
+import { IMovieDetails } from '../models/movie-details.model';
 
 //All movies
 export const loadMovies = createAction(
@@ -15,6 +16,22 @@ export const loadMoviesSuccess = createAction(
 
 export const loadMoviesFailure = createAction(
   '[Movie] Load Movies Failure',
+  props<{ error: any }>()
+);
+
+// Get Movie By Id
+export const loadMovieDetailsById = createAction(
+  '[Movie] Load Movie Details By Id',
+  props<{ id: number }>()
+);
+
+export const loadMovieDetailsByIdSuccess = createAction(
+  '[Movie] Load Movie Details By Id Success',
+  props<{ movieDetails: IMovieDetails | null }>()
+);
+
+export const loadMovieDetailsByIdFailture = createAction(
+  '[Movie] Load Movie Details By Id Failure',
   props<{ error: any }>()
 );
 

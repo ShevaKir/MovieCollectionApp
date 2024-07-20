@@ -12,12 +12,27 @@ export class MovieEffects {
     this.actions$.pipe(
       ofType(MovieActions.loadMovies),
       mergeMap((props) => {
-        debugger
         return this.movieService.getMovieList(props.category).pipe(
           map((movies) =>
             MovieActions.loadMoviesSuccess({ movies: movies.results })
           ),
           catchError((error) => of(MovieActions.loadMoviesFailure({ error })))
+        );
+      })
+    )
+  );
+
+  loadMovieDetailsById$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(MovieActions.loadMovieDetailsById),
+      mergeMap((props) => {
+        return this.movieService.getMovieById(props.id).pipe(
+          map((movie) =>
+            MovieActions.loadMovieDetailsByIdSuccess({ movieDetails: movie })
+          ),
+          catchError((error) =>
+            of(MovieActions.loadMovieDetailsByIdFailture({ error }))
+          )
         );
       })
     )

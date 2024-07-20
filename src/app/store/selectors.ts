@@ -14,3 +14,10 @@ export const selectWatchLaterMovies = createSelector(
   selectMovieState,
   (state) => state.watchLaterMovies
 );
+
+export const selectCurrentMovieDetails = createSelector(
+  selectMovieState,
+  (state) => {
+    return state.currentMovieDetails;
+  }
+);

@@ -4,34 +4,38 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
-import { UpperCasePipe } from '@angular/common';
+import { AsyncPipe, CommonModule, UpperCasePipe } from '@angular/common';
 import { MovieService } from '../../services/movie.service';
-import { IMovieDetails } from '../../models/movie-details.model';
 import { NavigationService } from '../../services/navigation.service';
 import { Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { addToFavorite, addToWatchLater } from '../../store/actions';
+import {
+  addToFavorite,
+  addToWatchLater,
+  loadMovieDetailsById,
+} from '../../store/actions';
+import { selectCurrentMovieDetails } from '../../store/selectors';
 
 @Component({
   selector: 'app-movie-detail',
   standalone: true,
   imports: [
+    CommonModule,
     MatButtonModule,
     MatCardModule,
     MatListModule,
     MatIconModule,
     UpperCasePipe,
     RouterLink,
+    AsyncPipe,
   ],
   templateUrl: './movie-detail.component.html',
   styleUrl: './movie-detail.component.scss',
 })
 export class MovieDetailComponent implements OnInit, OnDestroy {
-  movie!: IMovieDetails;
-  favourite: number = 0;
-  watchLater: number = 0;
   backPath: string = '';
   id: number = 0;
+  selectedMovieById$ = this.store.select(selectCurrentMovieDetails);
 
   private subscriptions: Subscription = new Subscription();
 
@@ -45,12 +49,7 @@ export class MovieDetailComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.id = +this.route.snapshot.params['id'];
-
-    const movieSub = this.movieService
-      .getMovieById(this.id)
-      .subscribe((movie) => {
-        this.movie = movie;
-      });
+    this.store.dispatch(loadMovieDetailsById({ id: this.id }));
 
     const navigationSub = this.navigationService
       .getPreviousPath()
@@ -58,7 +57,6 @@ export class MovieDetailComponent implements OnInit, OnDestroy {
         this.backPath = path;
       });
 
-    this.subscriptions.add(movieSub);
     this.subscriptions.add(navigationSub);
   }
 

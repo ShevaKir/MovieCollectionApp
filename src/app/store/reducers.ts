@@ -17,8 +17,20 @@ export const MovieReducer = createReducer(
       error: error,
     };
   }),
+  on(MovieActions.loadMovieDetailsByIdSuccess, (state, { movieDetails }) => {
+    return {
+      ...state,
+      currentMovieDetails: movieDetails,
+    };
+  }),
+  on(MovieActions.loadMovieDetailsByIdFailture, (state, { error }) => {
+    return {
+      ...state,
+      currentMovieDetails: null,
+      error: error,
+    };
+  }),
   on(MovieActions.loadFavoriteMovieSuccess, (state, { movie }) => {
-    debugger
     if (!state.favoriteMovies.some((m) => m.id === movie.id)) {
       return {
         ...state,
@@ -40,7 +52,6 @@ export const MovieReducer = createReducer(
     };
   }),
   on(MovieActions.loadWatchLaterMovieSuccess, (state, { movie }) => {
-    debugger
     if (!state.watchLaterMovies.some((m) => m.id === movie.id)) {
       return {
         ...state,
