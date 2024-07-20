@@ -19,12 +19,41 @@ export const loadMoviesFailure = createAction(
 );
 
 //Favorite Movies
-export const addMovieToFavorite = createAction(
-  '[Favorite Movie] Add movie',
+export const addToFavorite = createAction(
+  '[Favorite Movie] Add To Favorite',
   props<{ id: number }>()
 );
 
-export const removeMovieFromFavorite = createAction(
+export const removeFromFavorite = createAction(
   '[Favorite Movie] Remove movie',
   props<{ id: number }>()
+);
+
+export const loadFavoriteMovieSuccess = createAction(
+  '[Movie] Load Favorite Movie Success',
+  props<{ movie: IMovie }>()
+);
+export const loadFavoriteMovieFailure = createAction(
+  '[Movie] Load Favorite Movie Failure',
+  props<{ error: any }>()
+);
+
+//Watch Later Movies
+export const addToWatchLater = createAction(
+  '[Watch Later Movie] Add movie',
+  props<{ id: number }>()
+);
+
+export const removeFromWatchLater = createAction(
+  '[Watch Later Movie] Remove movie',
+  props<{ id: number }>()
+);
+
+export const loadWatchLaterMovieSuccess = createAction(
+  '[Watch Later Movie] Load Watch Later Movie Success',
+  props<{ movie: IMovie }>()
+);
+export const loadWatchlaterMovieFailure = createAction(
+  '[Watch Later Movie] Load Watch Later Movie Failure',
+  props<{ error: any }>()
 );

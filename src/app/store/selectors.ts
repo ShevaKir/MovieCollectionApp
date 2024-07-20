@@ -6,3 +6,11 @@ export const selectMovies = createSelector(
   selectMovieState,
   (state) => state.movies
 );
+export const selectFavoriteMovies = createSelector(
+  selectMovieState,
+  (state) => state.favoriteMovies
+);
+export const selectWatchLaterMovies = createSelector(
+  selectMovieState,
+  (state) => state.watchLaterMovies
+);

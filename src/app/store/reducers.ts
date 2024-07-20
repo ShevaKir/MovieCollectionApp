@@ -17,16 +17,50 @@ export const MovieReducer = createReducer(
       error: error,
     };
   }),
-  on(MovieActions.addMovieToFavorite, (state, { id }) => {
+  on(MovieActions.loadFavoriteMovieSuccess, (state, { movie }) => {
+    debugger
+    if (!state.favoriteMovies.some((m) => m.id === movie.id)) {
+      return {
+        ...state,
+        favoriteMovies: [...state.favoriteMovies, movie],
+      };
+    }
+    return state;
+  }),
+  on(MovieActions.loadFavoriteMovieFailure, (state, { error }) => {
     return {
       ...state,
-      favoriteMovies: [...state.favoriteMovies, id],
+      error: error,
     };
   }),
-  on(MovieActions.removeMovieFromFavorite, (state, { id }) => {
+  on(MovieActions.removeFromFavorite, (state, { id }) => {
     return {
       ...state,
-      favoriteMovies: state.favoriteMovies.filter((movieId) => movieId !== id),
+      favoriteMovies: state.favoriteMovies.filter((movie) => movie.id !== id),
+    };
+  }),
+  on(MovieActions.loadWatchLaterMovieSuccess, (state, { movie }) => {
+    debugger
+    if (!state.watchLaterMovies.some((m) => m.id === movie.id)) {
+      return {
+        ...state,
+        watchLaterMovies: [...state.watchLaterMovies, movie],
+      };
+    }
+    return state;
+  }),
+  on(MovieActions.loadWatchlaterMovieFailure, (state, { error }) => {
+    return {
+      ...state,
+      error: error,
+    };
+  }),
+  on(MovieActions.removeFromWatchLater, (state, { id }) => {
+    return {
+      ...state,
+      watchLaterMovies: state.watchLaterMovies.filter(
+        (movie) => movie.id !== id
+      ),
     };
   })
 );
