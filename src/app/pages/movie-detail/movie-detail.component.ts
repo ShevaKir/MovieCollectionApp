@@ -9,6 +9,8 @@ import { MovieService } from '../../services/movie.service';
 import { IMovieDetails } from '../../models/movie-details.model';
 import { NavigationService } from '../../services/navigation.service';
 import { Subscription } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { addToFavorite, addToWatchLater } from '../../store/actions';
 
 @Component({
   selector: 'app-movie-detail',
@@ -29,6 +31,7 @@ export class MovieDetailComponent implements OnInit, OnDestroy {
   favourite: number = 0;
   watchLater: number = 0;
   backPath: string = '';
+  id: number = 0;
 
   private subscriptions: Subscription = new Subscription();
 
@@ -36,15 +39,18 @@ export class MovieDetailComponent implements OnInit, OnDestroy {
     private router: Router,
     private route: ActivatedRoute,
     private movieService: MovieService,
-    private navigationService: NavigationService
+    private navigationService: NavigationService,
+    private store: Store
   ) {}
 
   ngOnInit(): void {
-    const id: number = +this.route.snapshot.params['id'];
+    this.id = +this.route.snapshot.params['id'];
 
-    const movieSub = this.movieService.getMovieById(id).subscribe((movie) => {
-      this.movie = movie;
-    });
+    const movieSub = this.movieService
+      .getMovieById(this.id)
+      .subscribe((movie) => {
+        this.movie = movie;
+      });
 
     const navigationSub = this.navigationService
       .getPreviousPath()
@@ -57,11 +63,11 @@ export class MovieDetailComponent implements OnInit, OnDestroy {
   }
 
   addFavourite() {
-    this.movieService.addMovieToFavourite(this.movie);
+    this.store.dispatch(addToFavorite({ id: this.id }));
   }
 
   addWatchLater() {
-    this.movieService.addMovieToWatchLater(this.movie);
+    this.store.dispatch(addToWatchLater({ id: this.id }));
   }
 
   navigateBack() {
