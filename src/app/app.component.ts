@@ -20,11 +20,15 @@ import { NavigationService } from './services/navigation.service';
 })
 export class AppComponent {
 
-  constructor(private authServise: AuthService, private navigationService: NavigationService) {
+  constructor() {
   }
 
   isViewMenu: boolean = true;
   toggleSidebar(isViewMenu: boolean) {
     this.isViewMenu = isViewMenu;
+  }
+
+  sum(a: number, b: number) {
+    return a + b;
   }
 }
