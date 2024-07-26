@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SubListComponent } from './sub-list.component';
+import { FavoriteComponent } from './favorite.component';
 
-describe('SubListComponent', () => {
-  let component: SubListComponent;
-  let fixture: ComponentFixture<SubListComponent>;
+describe('FavoriteComponent', () => {
+  let component: FavoriteComponent;
+  let fixture: ComponentFixture<FavoriteComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SubListComponent]
+      imports: [FavoriteComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(SubListComponent);
+    fixture = TestBed.createComponent(FavoriteComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

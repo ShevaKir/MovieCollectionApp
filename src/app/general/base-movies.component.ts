@@ -5,18 +5,8 @@ import { MovieCollection } from '../enums/movie-collection';
 import { MovieService } from '../services/movie.service';
 import { SelectMovieList } from '../enums/select-movie-list';
 import { Store } from '@ngrx/store';
-import {
-  addToFavorite,
-  addToWatchLater,
-  loadMovies,
-  removeFromFavorite,
-  removeFromWatchLater,
-} from '../store/actions';
-import {
-  selectFavoriteMovies,
-  selectMovies,
-  selectWatchLaterMovies,
-} from '../store/selectors';
+import { addToFavorite, addToWatchLater, loadMovies } from '../store/actions';
+import { selectMovies } from '../store/selectors';
 
 @Component({
   template: '',
@@ -26,8 +16,6 @@ export abstract class BaseMoviesComponent implements OnInit {
   public selectedSubMovieList: SelectMovieList = SelectMovieList.Favourite;
   public selectMovieList = SelectMovieList;
   public selectedMovies$ = this.store.select(selectMovies);
-  public selectedFavoriteMovies$ = this.store.select(selectFavoriteMovies);
-  public selectedWatchLaterMovies$ = this.store.select(selectWatchLaterMovies);
 
   constructor(
     private router: Router,
@@ -45,14 +33,6 @@ export abstract class BaseMoviesComponent implements OnInit {
 
   addMovieToWatchLater(movie: IMovie) {
     this.store.dispatch(addToWatchLater({ id: movie.id }));
-  }
-
-  removeMovieFromFavouriteList(id: number) {
-    this.store.dispatch(removeFromFavorite({ id }));
-  }
-
-  removeMovieFromWatchLaterList(id: number) {
-    this.store.dispatch(removeFromWatchLater({ id }));
   }
 
   navigateToDetail(id: number) {

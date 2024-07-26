@@ -1,0 +1,15 @@
+.movies__movie-list {
+  justify-content: flex-start;
+}
+
+.mat-mdc-card-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header-image {
+  background-size: cover;
+  margin-right: 16px;
+  margin-bottom: 0;
+}

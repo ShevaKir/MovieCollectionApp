@@ -10,20 +10,4 @@
     </app-movie-card>
     }
   </div>
-  <div class="movies__sub-list">
-    <app-sub-header (selectedTab)="selectedMovieList($event)"></app-sub-header>
-    @if (selectedSubMovieList == selectMovieList.Favourite) {
-    <app-sub-list
-      [title]="'List of Favourite'"
-      [movies]="selectedFavoriteMovies$ | async"
-      (removeMovie)="removeMovieFromFavouriteList($event)"
-    ></app-sub-list>
-    } @else {
-    <app-sub-list
-      [title]="'List of Watch Later'"
-      [movies]="selectedWatchLaterMovies$ | async"
-      (removeMovie)="removeMovieFromWatchLaterList($event)"
-    ></app-sub-list>
-    }
-  </div>
 </div>

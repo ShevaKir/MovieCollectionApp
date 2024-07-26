@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SubHeaderComponent } from './sub-header.component';
+import { WatchLaterComponent } from './watch-later.component';
 
-describe('SubHeaderComponent', () => {
-  let component: SubHeaderComponent;
-  let fixture: ComponentFixture<SubHeaderComponent>;
+describe('WatchLaterComponent', () => {
+  let component: WatchLaterComponent;
+  let fixture: ComponentFixture<WatchLaterComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SubHeaderComponent]
+      imports: [WatchLaterComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(SubHeaderComponent);
+    fixture = TestBed.createComponent(WatchLaterComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

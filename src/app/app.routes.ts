@@ -6,6 +6,8 @@ import { UpcomingPageComponent } from './pages/upcoming-page/upcoming-page.compo
 import { HomeComponent } from './pages/home/home.component';
 import { MovieDetailComponent } from './pages/movie-detail/movie-detail.component';
 import { MovieDetailsResolver } from './resolvers/movie-delails.resolver';
+import { FavoriteComponent } from './pages/favorite/favorite.component';
+import { WatchLaterComponent } from './pages/watch-later/watch-later.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -24,6 +26,14 @@ export const routes: Routes = [
   {
     path: 'upcoming',
     component: UpcomingPageComponent,
+  },
+  {
+    path: 'favorite',
+    component: FavoriteComponent
+  },
+  {
+    path: 'watch-later',
+    component: WatchLaterComponent
   },
   {
     path: 'movie/:id',
