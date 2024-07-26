@@ -1,49 +1,58 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { IMovie } from '../models/movie.model';
 import { Router } from '@angular/router';
 import { MovieCollection } from '../enums/movie-collection';
 import { MovieService } from '../services/movie.service';
 import { SelectMovieList } from '../enums/select-movie-list';
+import { Store } from '@ngrx/store';
+import {
+  addToFavorite,
+  addToWatchLater,
+  loadMovies,
+  removeFromFavorite,
+  removeFromWatchLater,
+} from '../store/actions';
+import {
+  selectFavoriteMovies,
+  selectMovies,
+  selectWatchLaterMovies,
+} from '../store/selectors';
 
 @Component({
   template: '',
 })
-export abstract class BaseMoviesComponent {
+export abstract class BaseMoviesComponent implements OnInit {
   abstract movieCollection: MovieCollection;
-  public subMovieList: ReadonlyArray<IMovie> = [];
   public selectedSubMovieList: SelectMovieList = SelectMovieList.Favourite;
-  public movies!: ReadonlyArray<IMovie>;
-  public titleSubList: string = '';
-  constructor(private router: Router, protected movieService: MovieService) {}
+  public selectMovieList = SelectMovieList;
+  public selectedMovies$ = this.store.select(selectMovies);
+  public selectedFavoriteMovies$ = this.store.select(selectFavoriteMovies);
+  public selectedWatchLaterMovies$ = this.store.select(selectWatchLaterMovies);
+
+  constructor(
+    private router: Router,
+    protected movieService: MovieService,
+    private store: Store
+  ) {}
 
   ngOnInit(): void {
-    this.updateSubMovieList();
-    this.movieService.getMovieList(this.movieCollection).subscribe((movies) => {
-      this.movies = movies.results;
-    });
+    this.store.dispatch(loadMovies({ category: this.movieCollection }));
   }
 
   addMovieToFavourite(movie: IMovie) {
-    this.movieService.addMovieToFavourite(movie);
-    this.updateSubMovieList();
+    this.store.dispatch(addToFavorite({ id: movie.id }));
   }
 
   addMovieToWatchLater(movie: IMovie) {
-    this.movieService.addMovieToWatchLater(movie);
-    this.updateSubMovieList();
+    this.store.dispatch(addToWatchLater({ id: movie.id }));
   }
 
-  removeMovie(id: number) {
-    const movie: IMovie = this.subMovieList.find((m) => m.id === id) as IMovie;
-    switch (this.selectedSubMovieList) {
-      case SelectMovieList.Favourite:
-        this.movieService.removeMovieFromFavourite(movie);
-        break;
-      case SelectMovieList.WatchLater:
-        this.movieService.removeMovieFromWatchLater(movie);
-        break;
-    }
-    this.updateSubMovieList();
+  removeMovieFromFavouriteList(id: number) {
+    this.store.dispatch(removeFromFavorite({ id }));
+  }
+
+  removeMovieFromWatchLaterList(id: number) {
+    this.store.dispatch(removeFromWatchLater({ id }));
   }
 
   navigateToDetail(id: number) {
@@ -52,21 +61,7 @@ export abstract class BaseMoviesComponent {
     });
   }
 
-  private updateSubMovieList() {
-    switch (this.selectedSubMovieList) {
-      case SelectMovieList.Favourite:
-        this.titleSubList = 'List of favourite movies';
-        this.subMovieList = this.movieService.getFavourites();
-        break;
-      case SelectMovieList.WatchLater:
-        this.titleSubList = 'List of watch later movies';
-        this.subMovieList = this.movieService.getWatchLaters();
-        break;
-    }
-  }
-
   selectedMovieList(selectedTab: SelectMovieList) {
     this.selectedSubMovieList = selectedTab;
-    this.updateSubMovieList();
   }
 }

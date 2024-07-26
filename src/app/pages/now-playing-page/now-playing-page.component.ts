@@ -5,6 +5,7 @@ import { SubHeaderComponent } from '../../components/sub-header/sub-header.compo
 import { BaseMoviesComponent } from '../../general/base-movies.component';
 import { MovieCollection } from '../../enums/movie-collection';
 import { SubListComponent } from '../../components/sub-list/sub-list.component';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'app-now-playing-page',
@@ -14,6 +15,7 @@ import { SubListComponent } from '../../components/sub-list/sub-list.component';
     RouterOutlet,
     SubHeaderComponent,
     SubListComponent,
+    AsyncPipe
   ],
   templateUrl: './now-playing-page.component.html',
   styleUrl: './now-playing-page.component.scss',

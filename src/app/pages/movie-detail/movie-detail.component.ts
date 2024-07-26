@@ -1,58 +1,71 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
-import { UpperCasePipe } from '@angular/common';
-import { MovieService } from '../../services/movie.service';
-import { IMovieDetails } from '../../models/movie-details.model';
+import { AsyncPipe, CommonModule, UpperCasePipe } from '@angular/common';
 import { NavigationService } from '../../services/navigation.service';
+import { Subscription } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { addToFavorite, addToWatchLater } from '../../store/actions';
+import { selectCurrentMovieDetails } from '../../store/selectors';
 
 @Component({
   selector: 'app-movie-detail',
   standalone: true,
   imports: [
+    CommonModule,
     MatButtonModule,
     MatCardModule,
     MatListModule,
     MatIconModule,
     UpperCasePipe,
-    RouterLink
+    RouterLink,
+    AsyncPipe,
   ],
   templateUrl: './movie-detail.component.html',
   styleUrl: './movie-detail.component.scss',
 })
-export class MovieDetailComponent implements OnInit {
-  movie!: IMovieDetails;
-  favourite: number = 0;
-  watchLater: number = 0;
+export class MovieDetailComponent implements OnInit, OnDestroy {
+  backPath: string = '';
+  id: number = 0;
+  selectedMovieById$ = this.store.select(selectCurrentMovieDetails);
+
+  private subscriptions: Subscription = new Subscription();
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private movieService: MovieService,
-    private navigationService: NavigationService
+    private navigationService: NavigationService,
+    private store: Store
   ) {}
 
   ngOnInit(): void {
-    const id: number = +this.route.snapshot.params['id'];
+    this.id = +this.route.snapshot.params['id'];
 
-    this.movieService.getMovieById(id).subscribe((movie) => {
-      this.movie = movie;
-    });
+    const navigationSub = this.navigationService
+      .getPreviousPath()
+      .subscribe((path) => {
+        this.backPath = path;
+      });
+
+    this.subscriptions.add(navigationSub);
   }
 
   addFavourite() {
-    this.movieService.addMovieToFavourite(this.movie);
+    this.store.dispatch(addToFavorite({ id: this.id }));
   }
 
   addWatchLater() {
-    this.movieService.addMovieToWatchLater(this.movie);
+    this.store.dispatch(addToWatchLater({ id: this.id }));
   }
 
   navigateBack() {
-    const pathToBack = this.navigationService.getPreviousUrl();
-    this.router.navigate([pathToBack]);
+    this.router.navigate([this.backPath]);
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
   }
 }

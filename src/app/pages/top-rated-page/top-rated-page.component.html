@@ -1,6 +1,6 @@
 <div class="movies">
   <div class="movies__movie-list">
-    @for (movie of movies; track movie) {
+    @for (movie of selectedMovies$ | async; track movie) {
     <app-movie-card
       [movie]="movie"
       (addFavourite)="addMovieToFavourite($event)"
@@ -13,10 +13,18 @@
   <div class="movies__sub-list">
     <app-sub-header (selectedTab)="selectedMovieList($event)"></app-sub-header>
 
+    @if (selectedSubMovieList == selectMovieList.Favourite) {
     <app-sub-list
-      [title]="titleSubList"
-      [movies]="subMovieList"
-      (removeMovie)="removeMovie($event)"
+      [title]="'List of Favourite'"
+      [movies]="selectedFavoriteMovies$ | async"
+      (removeMovie)="removeMovieFromFavouriteList($event)"
     ></app-sub-list>
+    } @else {
+    <app-sub-list
+      [title]="'List of Watch Later'"
+      [movies]="selectedWatchLaterMovies$ | async"
+      (removeMovie)="removeMovieFromWatchLaterList($event)"
+    ></app-sub-list>
+    }
   </div>
 </div>

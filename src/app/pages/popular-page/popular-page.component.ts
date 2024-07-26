@@ -5,6 +5,7 @@ import { BaseMoviesComponent } from '../../general/base-movies.component';
 import { SubHeaderComponent } from '../../components/sub-header/sub-header.component';
 import { MovieCollection } from '../../enums/movie-collection';
 import { SubListComponent } from '../../components/sub-list/sub-list.component';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'app-popular-page',
@@ -14,6 +15,7 @@ import { SubListComponent } from '../../components/sub-list/sub-list.component';
     RouterOutlet,
     SubHeaderComponent,
     SubListComponent,
+    AsyncPipe
   ],
   templateUrl: './popular-page.component.html',
   styleUrl: './popular-page.component.scss',

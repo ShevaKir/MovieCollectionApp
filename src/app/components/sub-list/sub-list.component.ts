@@ -15,7 +15,7 @@ import { MatButtonModule } from '@angular/material/button';
 })
 export class SubListComponent {
   @Input() title: string = '';
-  @Input() movies!: ReadonlyArray<IMovie>;
+  @Input() movies!: ReadonlyArray<IMovie> | null;
 
   @Output() removeMovie = new EventEmitter<number>();
 
