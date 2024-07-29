@@ -27,8 +27,4 @@ export class AppComponent {
   toggleSidebar(isViewMenu: boolean) {
     this.isViewMenu = isViewMenu;
   }
-
-  sum(a: number, b: number) {
-    return a + b;
-  }
 }
