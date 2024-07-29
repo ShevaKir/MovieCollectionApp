@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { Router, RouterLink } from '@angular/router';
@@ -12,11 +12,10 @@ import { MatButtonModule } from '@angular/material/button';
   styleUrl: './header.component.scss',
 })
 export class HeaderComponent {
-  public path: string = '';
   isViewMenu: boolean = true;
   @Output() toggleMenu = new EventEmitter<boolean>();
 
-  constructor( private router: Router) {}
+  constructor() {}
 
   toggleMenuButton() {
     this.isViewMenu = !this.isViewMenu;
