@@ -15,7 +15,6 @@ import { provideMockActions } from '@ngrx/effects/testing';
 import { ReplaySubject } from 'rxjs';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ActivatedRoute } from '@angular/router';
-import { of as observableOf } from 'rxjs';
 
 describe('MovieDetailComponent', () => {
   let component: MovieDetailComponent;
