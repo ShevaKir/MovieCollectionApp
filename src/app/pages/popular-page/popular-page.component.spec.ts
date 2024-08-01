@@ -1,18 +1,27 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PopularPageComponent } from './popular-page.component';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { MockStore, provideMockStore } from '@ngrx/store/testing';
 
 describe('PopularPageComponent', () => {
   let component: PopularPageComponent;
   let fixture: ComponentFixture<PopularPageComponent>;
+  let httpMock: HttpTestingController;
+  let store: MockStore;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [PopularPageComponent]
+      imports: [PopularPageComponent, HttpClientTestingModule],
+      providers: [
+        provideMockStore()
+      ]
     })
     .compileComponents();
     
     fixture = TestBed.createComponent(PopularPageComponent);
+    httpMock = TestBed.inject(HttpTestingController);
+    store = TestBed.inject(MockStore);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
