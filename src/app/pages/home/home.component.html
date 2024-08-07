@@ -1,3 +1,11 @@
 <h1>What's new?</h1>
 
-<app-search [searchName]="'Find movies'"></app-search>
+<app-search
+  [searchName]="'Find movies'"
+  (queryEvent)="handleSearch($event)"
+></app-search>
+<div class="movies__movie-list">
+  @for (movie of selectedFoundMovies$ | async; track movie) {
+  <app-movie-card [movie]="movie"> </app-movie-card>
+  }
+</div>

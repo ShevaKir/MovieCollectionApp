@@ -6,11 +6,15 @@ export interface MovieState {
   favoriteMovies: IMovie[];
   watchLaterMovies: IMovie[];
   currentMovieDetails: IMovieDetails | null;
+  searchQuery: string;
+  foundMovies: IMovie[] | null;
 }
 
 export const initialState: MovieState = {
   movies: null,
   favoriteMovies: [],
   watchLaterMovies: [],
-  currentMovieDetails: null
+  currentMovieDetails: null,
+  searchQuery: '',
+  foundMovies: null,
 };

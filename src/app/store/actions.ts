@@ -74,3 +74,18 @@ export const loadWatchlaterMovieFailure = createAction(
   '[Watch Later Movie] Load Watch Later Movie Failure',
   props<{ error: any }>()
 );
+
+//Search movies
+export const searchMoviesByTitle = createAction(
+  '[Search Movies] Search Movies By Title',
+  props<{ query: string }>()
+);
+
+export const loadFoundMoviesSuccess = createAction(
+  '[Search Movies] Load Found Movies Success',
+  props<{ query: string, movies: IMovie[] }>()
+);
+export const loadFoundMoviesFailure = createAction(
+  '[Search Movies] Load Found Movies Failure',
+  props<{ error: any }>()
+);
