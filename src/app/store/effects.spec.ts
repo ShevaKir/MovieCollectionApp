@@ -1,4 +1,4 @@
-import { ReplaySubject, of, throwError } from 'rxjs';
+import { ReplaySubject, of } from 'rxjs';
 import { MovieEffects } from './effects';
 import { MovieService } from '../services/movie.service';
 import { TestBed } from '@angular/core/testing';
@@ -9,21 +9,24 @@ import { movieDetailsMock, moviesMock } from '../mock/movies-mock';
 import {
   addToFavorite,
   addToWatchLater,
-  loadFavoriteMovieFailure,
   loadFavoriteMovieSuccess,
+  loadFoundMoviesSuccess,
   loadMovieDetailsById,
   loadMovieDetailsByIdSuccess,
   loadMovies,
   loadMoviesSuccess,
   loadWatchLaterMovieSuccess,
+  searchMoviesByTitle,
 } from './actions';
 import { MovieCollection } from '../enums/movie-collection';
 import { IMovieDetails } from '../models/movie-details.model';
+import { SearchService } from '../services/search.service';
 
 describe('Effects', () => {
   let effects: MovieEffects;
   let actions$: ReplaySubject<any>;
   let movieService: MovieService;
+  let searchService: SearchService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -36,6 +39,13 @@ describe('Effects', () => {
           useValue: {
             getMovieList: jest.fn(),
             getMovieById: jest.fn(),
+            searchMovie: jest.fn(),
+          },
+        },
+        {
+          provide: SearchService,
+          useValue: {
+            searchMovie: jest.fn(),
           },
         },
       ],
@@ -43,6 +53,7 @@ describe('Effects', () => {
 
     effects = TestBed.inject(MovieEffects);
     movieService = TestBed.inject(MovieService);
+    searchService = TestBed.inject(SearchService);
     actions$ = new ReplaySubject(1);
   });
 
@@ -99,6 +110,19 @@ describe('Effects', () => {
 
     effects.addToWatchLater$.subscribe((result) => {
       expect(result).toEqual(loadWatchLaterMovieSuccess({ movie }));
+      done();
+    });
+  });
+  it('should return searchMovieByTitle on success', (done) => {
+    const mockMovies = moviesMock;
+
+    actions$.next(searchMoviesByTitle({ query: 'movie' }));
+    (searchService.searchMovie as jest.Mock).mockReturnValue(
+      of(mockMovies)
+    );
+
+    effects.searchMovieByTitle$.subscribe((result) => {
+      expect(result).toEqual(loadFoundMoviesSuccess({ query: 'movie', movies: mockMovies }));
       done();
     });
   });

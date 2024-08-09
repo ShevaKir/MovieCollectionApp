@@ -1,7 +1,9 @@
 import { movieDetailsMock, moviesMock } from '../mock/movies-mock';
 import {
-    loadFavoriteMovieFailure,
-    loadFavoriteMovieSuccess,
+  loadFavoriteMovieFailure,
+  loadFavoriteMovieSuccess,
+  loadFoundMoviesFailure,
+  loadFoundMoviesSuccess,
   loadMovieDetailsByIdFailture,
   loadMovieDetailsByIdSuccess,
   loadMoviesFailure,
@@ -75,7 +77,10 @@ describe('Reducers', () => {
       favoriteMovies: [...initialState.favoriteMovies, movie],
     };
 
-    const state = MovieReducer(initialState, loadFavoriteMovieSuccess({ movie }));
+    const state = MovieReducer(
+      initialState,
+      loadFavoriteMovieSuccess({ movie })
+    );
     expect(state).toEqual(expectedState);
   });
   it('should handle loadFavoriteMovieFailure', () => {
@@ -85,7 +90,10 @@ describe('Reducers', () => {
       error: error,
     };
 
-    const state = MovieReducer(initialState, loadFavoriteMovieFailure({ error }));
+    const state = MovieReducer(
+      initialState,
+      loadFavoriteMovieFailure({ error })
+    );
     expect(state).toEqual(expectedState);
   });
   it('should handle removeFromFavorite', () => {
@@ -99,7 +107,10 @@ describe('Reducers', () => {
       favoriteMovies: [],
     };
 
-    const state = MovieReducer(stateWithFavorite, removeFromFavorite({ id: movie.id }));
+    const state = MovieReducer(
+      stateWithFavorite,
+      removeFromFavorite({ id: movie.id })
+    );
     expect(state).toEqual(expectedState);
   });
   it('should handle loadWatchLaterMovieSuccess', () => {
@@ -109,7 +120,10 @@ describe('Reducers', () => {
       watchLaterMovies: [...initialState.watchLaterMovies, movie],
     };
 
-    const state = MovieReducer(initialState, loadWatchLaterMovieSuccess({ movie }));
+    const state = MovieReducer(
+      initialState,
+      loadWatchLaterMovieSuccess({ movie })
+    );
     expect(state).toEqual(expectedState);
   });
   it('should handle loadWatchLaterMovieFailure', () => {
@@ -119,7 +133,10 @@ describe('Reducers', () => {
       error: error,
     };
 
-    const state = MovieReducer(initialState, loadWatchlaterMovieFailure({ error }));
+    const state = MovieReducer(
+      initialState,
+      loadWatchlaterMovieFailure({ error })
+    );
     expect(state).toEqual(expectedState);
   });
   it('should handle removeFromWatchLater', () => {
@@ -133,7 +150,36 @@ describe('Reducers', () => {
       watchLaterMovies: [],
     };
 
-    const state = MovieReducer(stateWithWatchLater, removeFromWatchLater({ id: movie.id }));
+    const state = MovieReducer(
+      stateWithWatchLater,
+      removeFromWatchLater({ id: movie.id })
+    );
+    expect(state).toEqual(expectedState);
+  });
+
+  it('should handle loadFoundMoviesSuccess', () => {
+    const movies = moviesMock;
+    const expectedState = {
+      ...initialState,
+      foundMovies: movies,
+    };
+
+    const state = MovieReducer(
+      initialState,
+      loadFoundMoviesSuccess({ query: '', movies: movies })
+    );
+    expect(state).toEqual(expectedState);
+  });
+
+  it('should handle loadMoviesFailure', () => {
+    const error = 'Some error';
+    const expectedState = {
+      ...initialState,
+      foundMovies: null,
+      error: error,
+    };
+
+    const state = MovieReducer(initialState, loadFoundMoviesFailure({ error }));
     expect(state).toEqual(expectedState);
   });
 });

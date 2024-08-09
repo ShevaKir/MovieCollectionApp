@@ -73,5 +73,18 @@ export const MovieReducer = createReducer(
         (movie) => movie.id !== id
       ),
     };
+  }),
+  on(MovieActions.loadFoundMoviesSuccess, (state, { query, movies }) => {
+    return {
+      ...state,
+      searchQuery: query,
+      foundMovies: movies,
+    };
+  }),
+  on(MovieActions.loadFoundMoviesFailure, (state, { error }) => {
+    return {
+      ...state,
+      error: error,
+    };
   })
 );
