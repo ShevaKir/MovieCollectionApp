@@ -24,3 +24,27 @@ export class RatingAscSorting implements ISorter {
     return [...movies].sort((a, b) => a.vote_average - b.vote_average);
   }
 }
+
+export class ReleaseDateDescSorting implements ISorter {
+  sort(movies: IMovie[]): IMovie[] {
+    return [...movies].sort(
+      (a, b) =>
+        new Date(b.release_date).getTime() - new Date(a.release_date).getTime()
+    );
+  }
+}
+
+export class ReleaseDateAscSorting implements ISorter {
+  sort(movies: IMovie[]): IMovie[] {
+    return [...movies].sort(
+      (a, b) =>
+        new Date(a.release_date).getTime() - new Date(b.release_date).getTime()
+    );
+  }
+}
+
+export class TitleSorting implements ISorter {
+  sort(movies: IMovie[]): IMovie[] {
+    return [...movies].sort((a, b) => a.title.localeCompare(b.title));
+  }
+}

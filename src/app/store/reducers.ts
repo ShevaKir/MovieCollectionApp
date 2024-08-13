@@ -4,6 +4,7 @@ import * as MovieActions from './actions';
 import { SortingMoviesFactory } from '../utils/sorting-factory';
 import { ISorter } from '../interfaces/sorting';
 import { IMovie } from '../models/movie.model';
+import { SortingMovies } from '../utils/sorting-movies-options';
 
 export const MovieReducer = createReducer(
   initialState,
@@ -91,6 +92,7 @@ export const MovieReducer = createReducer(
     };
   }),
   on(MovieActions.sortMoviesBy, (state, { option }) => {
+    if (option === SortingMovies.None) return { ...state };
     const sorter: ISorter = SortingMoviesFactory.createSortingStrategy(option);
     const sortedMovies: IMovie[] | null = state.foundMovies
       ? sorter.sort(state.foundMovies)
