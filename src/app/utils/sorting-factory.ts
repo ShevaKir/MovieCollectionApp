@@ -1,4 +1,4 @@
-import { ISorting } from '../interfaces/sorting';
+import { ISorter } from '../interfaces/sorting';
 import {
   PopularityAscSorting,
   PopularityDescSorting,
@@ -8,7 +8,7 @@ import {
 import { SortingMoviesOptions } from './sorting-movies-options';
 
 export class SortingMoviesFactory {
-  static createSortingStrategy(option: SortingMoviesOptions): ISorting {
+  static createSortingStrategy(option: SortingMoviesOptions): ISorter {
     switch (option) {
       case SortingMoviesOptions.PopularityDesc:
         return new PopularityDescSorting();

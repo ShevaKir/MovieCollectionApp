@@ -1,5 +1,5 @@
 import { IMovie } from '../models/movie.model';
 
-export interface ISorting {
+export interface ISorter {
   sort(movies: IMovie[]): IMovie[];
 }
