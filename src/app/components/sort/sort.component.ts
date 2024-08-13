@@ -12,16 +12,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 })
 export class SortComponent {
   @Input() title: string = '';
-  @Input() options!: Record<string, string>;
-  @Output() selectionChange = new EventEmitter<string>();
-
-  getOptionKeys(): string[] {
-    return Object.keys(this.options);
-  }
-
-  getOptionValue(key: string): string {
-    return this.options[key];
-  }
+  @Input() options!: Array<{ value: any; label: string }>;
+  @Output() selectionChange = new EventEmitter<any>();
 
   onSelectionChange(event: any): void {
     this.selectionChange.emit(event.value);

@@ -2,7 +2,7 @@ import { createAction, props } from '@ngrx/store';
 import { IMovie } from '../models/movie.model';
 import { MovieCollection } from '../enums/movie-collection';
 import { IMovieDetails } from '../models/movie-details.model';
-import { SortingMoviesOptions } from '../utils/sorting-movies-options';
+import { SortingMovies } from '../utils/sorting-movies-options';
 
 //All movies
 export const loadMovies = createAction(
@@ -94,5 +94,5 @@ export const loadFoundMoviesFailure = createAction(
 // Sorting Movies
 export const sortMoviesBy = createAction(
   '[Sort Movies] Set Sorting Movies Options',
-  props<{ option: SortingMoviesOptions }>()
+  props<{ option: SortingMovies }>()
 );

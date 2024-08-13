@@ -5,18 +5,18 @@ import {
   RatingAscSorting,
   RatingDescSorting,
 } from './sorting-movies';
-import { SortingMoviesOptions } from './sorting-movies-options';
+import { SortingMovies } from './sorting-movies-options';
 
 export class SortingMoviesFactory {
-  static createSortingStrategy(option: SortingMoviesOptions): ISorter {
+  static createSortingStrategy(option: SortingMovies): ISorter {
     switch (option) {
-      case SortingMoviesOptions.PopularityDesc:
+      case SortingMovies.PopularityDesc:
         return new PopularityDescSorting();
-      case SortingMoviesOptions.PopularityAsc:
+      case SortingMovies.PopularityAsc:
         return new PopularityAscSorting();
-      case SortingMoviesOptions.RatingDesc:
+      case SortingMovies.RatingDesc:
         return new RatingDescSorting();
-      case SortingMoviesOptions.RatingAsc:
+      case SortingMovies.RatingAsc:
         return new RatingAscSorting();
       default:
         throw new Error('Unknown sorting option');
