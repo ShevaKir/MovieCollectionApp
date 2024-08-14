@@ -2,6 +2,7 @@ import { createAction, props } from '@ngrx/store';
 import { IMovie } from '../models/movie.model';
 import { MovieCollection } from '../enums/movie-collection';
 import { IMovieDetails } from '../models/movie-details.model';
+import { SortingMovies } from '../utils/sorting-movies-options';
 
 //All movies
 export const loadMovies = createAction(
@@ -83,9 +84,15 @@ export const searchMoviesByTitle = createAction(
 
 export const loadFoundMoviesSuccess = createAction(
   '[Search Movies] Load Found Movies Success',
-  props<{ query: string, movies: IMovie[] }>()
+  props<{ query: string; movies: IMovie[] }>()
 );
 export const loadFoundMoviesFailure = createAction(
   '[Search Movies] Load Found Movies Failure',
   props<{ error: any }>()
+);
+
+// Sorting Movies
+export const sortMoviesBy = createAction(
+  '[Sort Movies] Set Sorting Movies Options',
+  props<{ option: SortingMovies }>()
 );

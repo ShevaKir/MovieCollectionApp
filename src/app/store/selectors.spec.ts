@@ -1,4 +1,5 @@
 import { movieDetailsMock, moviesMock } from '../mock/movies-mock';
+import { SortingMovies } from '../utils/sorting-movies-options';
 import { selectCurrentMovieDetails, selectFavoriteMovies, selectFoundMovies, selectMovieState, selectMovies, selectSearchQuery, selectWatchLaterMovies } from './selectors';
 import { MovieState } from './state';
 
@@ -9,7 +10,8 @@ describe('Selectors', () => {
     watchLaterMovies: moviesMock,
     currentMovieDetails: movieDetailsMock,
     searchQuery: 'movie',
-    foundMovies: moviesMock
+    foundMovies: moviesMock,
+    sortMoviesBy: SortingMovies.None
   };
 
   it('should select the feature state', () => {
