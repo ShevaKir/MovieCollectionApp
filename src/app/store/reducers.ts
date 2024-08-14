@@ -1,6 +1,10 @@
 import { createReducer, on } from '@ngrx/store';
 import { initialState } from './state';
 import * as MovieActions from './actions';
+import { SortingMoviesFactory } from '../utils/sorting-factory';
+import { ISorter } from '../interfaces/sorting';
+import { IMovie } from '../models/movie.model';
+import { SortingMovies } from '../utils/sorting-movies-options';
 
 export const MovieReducer = createReducer(
   initialState,
@@ -72,6 +76,32 @@ export const MovieReducer = createReducer(
       watchLaterMovies: state.watchLaterMovies.filter(
         (movie) => movie.id !== id
       ),
+    };
+  }),
+  on(MovieActions.loadFoundMoviesSuccess, (state, { query, movies }) => {
+    return {
+      ...state,
+      searchQuery: query,
+      foundMovies: movies,
+    };
+  }),
+  on(MovieActions.loadFoundMoviesFailure, (state, { error }) => {
+    return {
+      ...state,
+      error: error,
+    };
+  }),
+  on(MovieActions.sortMoviesBy, (state, { option }) => {
+    if (option === SortingMovies.None) return { ...state };
+    const sorter: ISorter = SortingMoviesFactory.createSortingStrategy(option);
+    const sortedMovies: IMovie[] | null = state.foundMovies
+      ? sorter.sort(state.foundMovies)
+      : null;
+
+    return {
+      ...state,
+      sortMoviesBy: option,
+      foundMovies: sortedMovies,
     };
   })
 );

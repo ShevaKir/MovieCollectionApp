@@ -21,3 +21,13 @@ export const selectCurrentMovieDetails = createSelector(
     return state.currentMovieDetails;
   }
 );
+
+export const selectFoundMovies = createSelector(
+  selectMovieState,
+  (state) => state.foundMovies
+);
+
+export const selectSearchQuery = createSelector(
+  selectMovieState,
+  (state) => state.searchQuery
+);

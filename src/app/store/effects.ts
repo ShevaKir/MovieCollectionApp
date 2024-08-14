@@ -2,11 +2,16 @@ import { Injectable } from '@angular/core';
 import { MovieService } from '../services/movie.service';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import * as MovieActions from './actions';
-import { catchError, map, mergeMap, of } from 'rxjs';
+import { catchError, map, mergeMap, of, switchMap } from 'rxjs';
+import { SearchService } from '../services/search.service';
 
 @Injectable()
 export class MovieEffects {
-  constructor(private movieService: MovieService, private actions$: Actions) {}
+  constructor(
+    private movieService: MovieService,
+    private searchService: SearchService,
+    private actions$: Actions
+  ) {}
 
   loadMovies$ = createEffect(() =>
     this.actions$.pipe(
@@ -64,6 +69,25 @@ export class MovieEffects {
           ),
           catchError((error) =>
             of(MovieActions.loadWatchlaterMovieFailure({ error }))
+          )
+        );
+      })
+    )
+  );
+
+  searchMovieByTitle$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(MovieActions.searchMoviesByTitle),
+      switchMap((props) => {
+        return this.searchService.searchMovie(props.query).pipe(
+          map((movies) =>
+            MovieActions.loadFoundMoviesSuccess({
+              query: props.query,
+              movies: movies,
+            })
+          ),
+          catchError((error) =>
+            of(MovieActions.loadFoundMoviesFailure({ error }))
           )
         );
       })

@@ -1,5 +1,6 @@
 import { movieDetailsMock, moviesMock } from '../mock/movies-mock';
-import { selectCurrentMovieDetails, selectFavoriteMovies, selectMovieState, selectMovies, selectWatchLaterMovies } from './selectors';
+import { SortingMovies } from '../utils/sorting-movies-options';
+import { selectCurrentMovieDetails, selectFavoriteMovies, selectFoundMovies, selectMovieState, selectMovies, selectSearchQuery, selectWatchLaterMovies } from './selectors';
 import { MovieState } from './state';
 
 describe('Selectors', () => {
@@ -8,6 +9,9 @@ describe('Selectors', () => {
     favoriteMovies: moviesMock,
     watchLaterMovies: moviesMock,
     currentMovieDetails: movieDetailsMock,
+    searchQuery: 'movie',
+    foundMovies: moviesMock,
+    sortMoviesBy: SortingMovies.None
   };
 
   it('should select the feature state', () => {
@@ -32,6 +36,18 @@ describe('Selectors', () => {
   it('should select the current movie details from the state', () => {
     expect(selectCurrentMovieDetails.projector(initialState)).toEqual(
       initialState.currentMovieDetails
+    );
+  });
+
+  it('should select the search query from the state', () => {
+    expect(selectSearchQuery.projector(initialState)).toEqual(
+      initialState.searchQuery
+    );
+  });
+
+  it('should select the found movies from the state', () => {
+    expect(selectFoundMovies.projector(initialState)).toEqual(
+      initialState.foundMovies
     );
   });
 });
